@@ -1,0 +1,162 @@
+---
+title: Interactive elements
+description: How to create buttons, toggles, color pickers, sliders, inputs, and dropdowns.
+---
+
+## Button
+
+```lua
+local Button = Tab:CreateButton({
+   Name = "Button Example",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   end,
+})
+```
+
+### Update a button
+
+```lua
+Button:Set("Button Example")
+```
+
+---
+
+## Toggle
+
+```lua
+local Toggle = Tab:CreateToggle({
+   Name = "Toggle Example",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file; make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+```
+
+### Update a toggle
+
+```lua
+Toggle:Set(false)
+```
+
+---
+
+## Color picker
+
+```lua
+local ColorPicker = Tab:CreateColorPicker({
+    Name = "Color Picker",
+    Color = Color3.fromRGB(255,255,255),
+    Flag = "ColorPicker1", -- A flag is the identifier for the configuration file; make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        -- The function that takes place every time the color picker is moved/changed
+        -- The variable (Value) is a Color3fromRGB value based on which color is selected
+    end
+})
+```
+
+### Update a color picker
+
+```lua
+ColorPicker:Set(Color3.fromRGB(255,255,255))
+```
+
+---
+
+## Slider
+
+```lua
+local Slider = Tab:CreateSlider({
+   Name = "Slider Example",
+   Range = {0, 100},
+   Increment = 10,
+   Suffix = "Bananas",
+   CurrentValue = 10,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file; make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the slider changes
+   -- The variable (Value) is a number that correlates to the value the slider is currently at
+   end,
+})
+```
+
+### Update a slider
+
+```lua
+Slider:Set(10) -- The new slider integer value
+```
+
+---
+
+## Input
+
+```lua
+local Input = Tab:CreateInput({
+   Name = "Input Example",
+   CurrentValue = "",
+   PlaceholderText = "Input Placeholder",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input1",
+   Callback = function(Text)
+   -- The function that takes place when the input is changed
+   -- The variable (Text) is a string for the value in the text box
+   end,
+})
+```
+
+### Update an input
+
+```lua
+Input:Set("New Text") -- The new input text value
+```
+
+---
+
+## Dropdown
+
+```lua
+local Dropdown = Tab:CreateDropdown({
+   Name = "Dropdown Example",
+   Options = {"Option 1", "Option 2"},
+   CurrentOption = {"Option 1"},
+   MultipleOptions = false,
+   Flag = "Dropdown1", -- A flag is the identifier for the configuration file; make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Options)
+   -- The function that takes place when the selected option is changed
+   -- The variable (Options) is a table of strings for the current selected options
+   end,
+})
+```
+
+### Refresh the option list
+
+```lua
+Dropdown:Refresh({"New Option 1","New Option 2"}) -- The new list of options
+```
+
+### Set the selected option
+
+The option table can include multiple strings if `MultipleOptions` is `true`.
+
+```lua
+Dropdown:Set({"Option 2"}) -- "Option 2" will now be selected
+```
+
+<Note>
+  The dropdown's callback is triggered when you call `Dropdown:Set()`.
+</Note>
+
+---
+
+## Reading element values
+
+To read the current value of an element, use `ElementName.CurrentValue`. For keybinds and dropdowns, use `KeybindName.CurrentKeybind` or `DropdownName.CurrentOption` respectively.
+
+You can also access values through the flags table:
+
+```lua
+Rayfield.Flags
+```

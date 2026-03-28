@@ -1,0 +1,42 @@
+---
+title: Text elements
+description: How to create labels and paragraphs in Rayfield.
+---
+
+## Label
+
+```lua
+local Label = Tab:CreateLabel("Label Example", 4483362458, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+```
+
+### Lucide icon support
+
+You can use a [Lucide icon](https://lucide.dev/icons/) name in place of a Roblox image ID.
+
+```lua
+local Label = Tab:CreateLabel("Label Example", "rewind")
+```
+
+<Note>
+  Not all Lucide icons are supported. See the [full list of supported icons](https://github.com/latte-soft/lucide-roblox/tree/master/icons/compiled/48px). Credit to [Lucide](https://lucide.dev/) and [Latte Softworks](https://github.com/latte-soft/).
+</Note>
+
+### Update a label
+
+```lua
+Label:Set("Label Example", 4483362458, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+```
+
+---
+
+## Paragraph
+
+```lua
+local Paragraph = Tab:CreateParagraph({Title = "Paragraph Example", Content = "Paragraph Example"})
+```
+
+### Update a paragraph
+
+```lua
+Paragraph:Set({Title = "Paragraph Example", Content = "Paragraph Example"})
+```

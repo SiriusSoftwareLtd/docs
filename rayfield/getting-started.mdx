@@ -1,0 +1,34 @@
+---
+title: Loading the library
+description: How to load Rayfield into your script and enable configuration saving.
+---
+
+## Load Rayfield
+
+Add the following line at the top of your script to load the Rayfield library.
+
+```lua
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+```
+
+## Enable configuration saving
+
+Configuration saving lets Rayfield automatically persist and restore element values across sessions.
+
+<Steps>
+  <Step title="Enable ConfigurationSaving in CreateWindow">
+    Set `ConfigurationSaving.Enabled` to `true` and provide a `FileName` when calling `CreateWindow`.
+  </Step>
+  <Step title="Set a unique flag on each element">
+    Every element that supports configuration saving has a `Flag` field. Make sure each flag is unique to avoid conflicts.
+  </Step>
+  <Step title="Call LoadConfiguration at the end of your script">
+    Place `Rayfield:LoadConfiguration()` after all your elements have been created.
+
+    ```lua
+    Rayfield:LoadConfiguration()
+    ```
+  </Step>
+</Steps>
+
+Rayfield will now automatically save and restore your configuration on each load.

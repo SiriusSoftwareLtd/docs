@@ -1,0 +1,47 @@
+/* ── Unica77 medium/light weights (regular loaded via docs.json) ── */
+@font-face {
+  font-family: 'Unica77';
+  src: url('/fonts/Unica77LL-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Unica77';
+  src: url('/fonts/Unica77LL-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Sidebar group headers vs page links ─────────────────── */
+/* Group headers are not <a> tags — make them small, muted, uppercase */
+aside p,
+aside button > p,
+aside nav > div > p,
+aside nav div > p {
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.07em !important;
+  text-transform: uppercase !important;
+  opacity: 0.45 !important;
+}
+
+/* Page links are <a> tags — keep normal size, add subtle indent */
+aside a {
+  font-size: 0.875rem !important;
+  padding-left: 0.5rem !important;
+}
+
+/* ── Discord navbar button ───────────────────────────────── */
+header a[href="https://discord.sirius.menu"] {
+  background-color: #5865F2 !important;
+  border-color: #5865F2 !important;
+  color: #ffffff !important;
+}
+
+header a[href="https://discord.sirius.menu"]:hover {
+  background-color: #4752C4 !important;
+  border-color: #4752C4 !important;
+}

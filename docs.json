@@ -1,68 +1,74 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Developer Suite",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0088FF",
+    "light": "#3399FF",
+    "dark": "#0070D6"
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": true
   },
   "favicon": "/favicon.svg",
+  "fonts": {
+    "family": "Unica77LL",
+    "source": "/fonts/Unica77LL-Regular.woff2",
+    "format": "woff2",
+    "weight": 400
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Home",
         "groups": [
+          {
+            "group": "Home",
+            "pages": ["index"]
+          }
+        ]
+      },
+      {
+        "tab": "Rayfield",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "rayfield/index"
+            ]
+          },
           {
             "group": "Getting started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "rayfield/getting-started",
+              "rayfield/windows",
+              "rayfield/notifications"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Elements",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "rayfield/elements/interactive",
+              "rayfield/elements/keybinds",
+              "rayfield/elements/text"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Configuration",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "rayfield/themes"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Rayfield Gen2",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Overview",
             "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "rayfield-gen2/index"
             ]
           }
         ]
@@ -71,14 +77,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Discord",
+          "href": "https://discord.sirius.menu",
+          "icon": "discord"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "GitHub",
+          "href": "https://github.com/SiriusSoftwareLtd",
+          "icon": "github"
         }
       ]
     }
@@ -88,35 +94,27 @@
     "dark": "/logo/dark.svg"
   },
   "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Discord",
+      "href": "https://discord.sirius.menu"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/SiriusSoftwareLtd"
     }
   }
 }

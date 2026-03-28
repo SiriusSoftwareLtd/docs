@@ -1,0 +1,50 @@
+---
+title: Notifications
+description: How to send notifications to the user in Rayfield.
+---
+
+## Send a notification
+
+```lua
+Rayfield:Notify({
+   Title = "Notification Title",
+   Content = "Notification Content",
+   Duration = 6.5,
+   Image = 4483362458,
+})
+```
+
+### Lucide icon support
+
+You can use a [Lucide icon](https://lucide.dev/icons/) name in place of a Roblox image ID.
+
+```lua
+Rayfield:Notify({
+   Title = "Notification Title",
+   Content = "Notification Content",
+   Duration = 6.5,
+   Image = "rewind",
+})
+```
+
+<Note>
+  Not all Lucide icons are supported. See the [full list of supported icons](https://github.com/latte-soft/lucide-roblox/tree/master/icons/compiled/48px). Credit to [Lucide](https://lucide.dev/) and [Latte Softworks](https://github.com/latte-soft/).
+</Note>
+
+### Options
+
+<ResponseField name="Title" type="string" required>
+  The notification title.
+</ResponseField>
+
+<ResponseField name="Content" type="string" required>
+  The notification body text.
+</ResponseField>
+
+<ResponseField name="Duration" type="number">
+  How long the notification stays visible, in seconds.
+</ResponseField>
+
+<ResponseField name="Image" type="number | string">
+  Icon for the notification. Pass a Roblox image ID (number) or a Lucide icon name (string).
+</ResponseField>
