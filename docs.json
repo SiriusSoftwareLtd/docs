@@ -11,6 +11,9 @@
     "default": "dark",
     "strict": true
   },
+  "icons": {
+    "library": "lucide"
+  },
   "favicon": "/favicon.svg",
   "fonts": {
     "family": "Unica77LL",
