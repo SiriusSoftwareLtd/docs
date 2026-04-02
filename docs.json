@@ -62,6 +62,12 @@
             "pages": [
               "rayfield/themes"
             ]
+          },
+          {
+            "group": "Security",
+            "pages": [
+              "rayfield/anti-detection"
+            ]
           }
         ]
       },

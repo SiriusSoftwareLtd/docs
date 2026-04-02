@@ -1,0 +1,77 @@
+---
+title: Anti-Detection
+description: How to use a custom asset ID to reduce Rayfield's detectability by game anti-cheats.
+---
+
+## How Rayfield gets detected
+
+Rayfield loads its UI through `game:GetObjects` with a known asset ID. Most anti-cheats hook this function and check the ID against a blocklist — and since Rayfield's default ID (`10804731440`) is public, it's an easy flag.
+
+The fix is simple: re-upload the UI model to your own account and point Rayfield at your copy. Now every script has its own unique asset ID that anti-cheats don't have on file.
+
+<Note>
+This only removes the lowest-hanging detection vector. It won't make your script fully undetectable.
+</Note>
+
+---
+
+## Re-upload the UI model
+
+<Steps>
+  <Step title="Get the Rayfield model in Studio">
+    Open Roblox Studio and grab the model however you prefer:
+
+    - Get it from the [Creator Store](https://create.roblox.com/store/asset/10804731440) and insert it
+    - Search **Rayfield** in the Toolbox
+    - Run this in the command bar:
+
+    ```lua
+    game:GetObjects("rbxassetid://10804731440")[1].Parent = workspace
+    ```
+  </Step>
+  <Step title="Upload it to your account">
+    Right-click the model in Explorer → **Save to Roblox** → upload as a new model.
+  </Step>
+  <Step title="Enable distribution">
+    Go to the asset's **Configure** page on the Roblox website and turn on **Distribute on Creator Store** — otherwise `GetObjects` won't be able to fetch it.
+  </Step>
+  <Step title="Copy the new asset ID">
+    Grab the ID from the asset URL or Asset Manager.
+  </Step>
+</Steps>
+
+---
+
+## Set your custom asset ID
+
+At the top of your script, **before** loading Rayfield:
+
+```lua
+getgenv().RAYFIELD_ASSET_ID = 123456789 -- your asset ID here
+```
+
+If you don't set this, Rayfield just uses the default ID. Still works, just detectable.
+
+---
+
+## Full example
+
+```lua
+getgenv().RAYFIELD_ASSET_ID = 123456789
+
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "My Script",
+    -- rest of your config
+})
+```
+
+---
+
+## Good to know
+
+- **Don't touch the model structure.** Upload it as-is. If you rename or rearrange things inside the model, Rayfield won't be able to find what it needs.
+- **Re-upload when Rayfield updates.** If we ship a new UI model, your old copy won't match anymore. Just re-upload the new one.
+- **Try to keep your asset ID to yourself.** If it ends up on a blocklist you just re-upload a new one — not a big deal, just extra work you can avoid.
+- **Key System UI is separate.** It has its own asset ID and only loads when key system is enabled, so it's less of a priority.
