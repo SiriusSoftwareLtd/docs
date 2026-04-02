@@ -1,0 +1,130 @@
+---
+title: Secure Mode
+description: Block all detectable Roblox asset references at runtime so your script stays invisible to anti-cheats.
+tag: "1.74+"
+---
+
+## Overview
+
+Starting with Build 1.74, Rayfield automatically loads its internal UI images from an external cache — no Roblox asset IDs involved. That alone makes a difference.
+
+Secure mode takes it further. It strips out every remaining reference that anti-cheats could use to identify your script:
+
+- **Icons.** Lucide names and `rbxassetid://` values are removed at runtime.
+- **Key system UI.** The key prompt loads a detectable model, so it's blocked entirely.
+- **Default model ID.** You're warned if you haven't set a [custom asset ID](/rayfield/anti-detection).
+
+The result: with secure mode on and a custom asset ID set, nothing traces back to Rayfield.
+
+---
+
+## Get started
+
+Set both flags before loading Rayfield:
+
+```lua
+getgenv().RAYFIELD_SECURE = true
+getgenv().RAYFIELD_ASSET_ID = 123456789 -- your re-uploaded model
+
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+```
+
+If you skip `RAYFIELD_ASSET_ID`, Rayfield still works — but the default model ID remains detectable. See [Anti-Detection](/rayfield/anti-detection) for how to upload your own copy.
+
+---
+
+## Icons
+
+In secure mode, Lucide icon names and Roblox image IDs are blocked. They resolve to blank.
+
+Use `getcustomasset()` instead — write your images to the executor filesystem and pass the path:
+
+```lua
+-- Blocked in secure mode:
+Tab:CreateLabel("Hello", "alert-circle")
+Tab:CreateLabel("Hello", 12345678)
+
+-- Works in every mode:
+Tab:CreateLabel("Hello", getcustomasset("my-icons/alert.png"))
+```
+
+This applies everywhere icons are accepted:
+- `CreateWindow({ Icon = ... })`
+- `CreateTab(Name, Icon)`
+- `CreateLabel(Text, Icon)`
+- `LabelValue:Set(Text, Icon)`
+- `Rayfield:Notify({ Image = ... })`
+
+---
+
+## Key system
+
+The key system UI requires a Roblox model to render. In secure mode, that model is never loaded.
+
+- If the user already has a saved key from a previous session, everything works as expected.
+- If there's no saved key, the script is blocked. The key prompt can't be shown.
+
+<Warning>
+Secure mode doesn't bypass the key system — it makes it stricter. Users without a saved key are blocked entirely. If you use `KeySystem = true`, make sure users enter their key at least once without secure mode first.
+</Warning>
+
+---
+
+## Executor requirements
+
+Custom icons with `getcustomasset()` depend on the executor supporting:
+- `getcustomasset`
+- `writefile` / `isfile` / `makefolder` / `isfolder`
+
+If these aren't available, a notification appears and some icons won't render.
+
+---
+
+## Example
+
+A complete setup with secure mode, a custom asset ID, and custom icons:
+
+```lua
+getgenv().RAYFIELD_SECURE = true
+getgenv().RAYFIELD_ASSET_ID = 123456789
+
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "My Script",
+    Icon = getcustomasset("my-icons/icon.png"),
+})
+
+local Tab = Window:CreateTab("Main", getcustomasset("my-icons/tab.png"))
+Tab:CreateLabel("Status", getcustomasset("my-icons/status.png"))
+
+Rayfield:Notify({
+    Title = "Loaded",
+    Content = "Script is ready",
+    Image = getcustomasset("my-icons/notif.png"),
+    Duration = 5,
+})
+```
+
+---
+
+## Flags
+
+| Flag | Type | Description |
+|---|---|---|
+| `RAYFIELD_SECURE` | boolean | Enables secure mode |
+| `RAYFIELD_ASSET_ID` | number | Custom asset ID for your copy of the Rayfield model |
+| `DISABLE_RAYFIELD_REQUESTS` | boolean | Disables outbound HTTP requests |
+
+---
+
+## At a glance
+
+| Feature | Normal (1.74+) | Secure mode |
+|---|---|---|
+| Internal UI images | External cache | External cache |
+| Lucide icons | Supported | Blocked |
+| Roblox image ID icons | Supported | Blocked |
+| `getcustomasset()` icons | Supported | Supported |
+| Key system | Full UI | Saved key only |
+| Default model ID warning | No | Yes |

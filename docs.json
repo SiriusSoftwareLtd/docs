@@ -66,7 +66,8 @@
           {
             "group": "Security",
             "pages": [
-              "rayfield/anti-detection"
+              "rayfield/anti-detection",
+              "rayfield/secure-mode"
             ]
           }
         ]

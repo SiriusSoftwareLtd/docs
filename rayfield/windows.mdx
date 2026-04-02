@@ -116,6 +116,10 @@ local Window = Rayfield:CreateWindow({
   </Expandable>
 </ResponseField>
 
+<Warning>
+  The key system UI loads a detectable Roblox model. In [Secure Mode](/rayfield/secure-mode), the key UI is blocked entirely — users must have a saved key from a previous session or they won't be able to load the script.
+</Warning>
+
 <ResponseField name="KeySystem" type="boolean">
   Enables the key system. Configure it with `KeySettings`.
 </ResponseField>
@@ -169,6 +173,10 @@ local Tab = Window:CreateTab("Tab Example", "rewind")
 <Note>
   Not all Lucide icons are supported. See the [full list of supported icons](https://github.com/latte-soft/lucide-roblox/tree/master/icons/compiled/48px). Credit to [Lucide](https://lucide.dev/) and [Latte Softworks](https://github.com/latte-soft/).
 </Note>
+
+<Warning>
+  Lucide icons and Roblox image IDs are detectable by game anti-cheats. If you need your script to be undetectable, use `getcustomasset()` instead. See [Secure Mode](/rayfield/secure-mode) for details.
+</Warning>
 
 ---
 
