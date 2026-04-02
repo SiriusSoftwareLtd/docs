@@ -1,6 +1,6 @@
 ---
 title: Text elements
-description: How to create labels and paragraphs in Rayfield.
+description: How to create labels, paragraphs, and dividers in Rayfield.
 ---
 
 ## Label
@@ -39,4 +39,20 @@ local Paragraph = Tab:CreateParagraph({Title = "Paragraph Example", Content = "P
 
 ```lua
 Paragraph:Set({Title = "Paragraph Example", Content = "Paragraph Example"})
+```
+
+---
+
+## Divider
+
+```lua
+local Divider = Tab:CreateDivider()
+```
+
+### Update a divider
+
+Toggle the divider's visibility.
+
+```lua
+Divider:Set(false) -- Visible
 ```
