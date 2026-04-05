@@ -1,0 +1,33 @@
+---
+title: Rate Limits
+description: API rate limiting and how to handle 429 responses.
+---
+
+## Limits
+
+**100 requests per minute** per API token. The window resets on a rolling basis.
+
+## Headers
+
+Every response includes rate limit headers:
+
+| Header | Description |
+|--------|------------|
+| `X-RateLimit-Limit` | Maximum requests per window (100) |
+| `X-RateLimit-Remaining` | Requests left in the current window |
+
+## Exceeding the limit
+
+When you hit the limit, you get a **429 Too Many Requests** response:
+
+```json
+{ "error": "Rate limit exceeded. Maximum 100 requests per minute." }
+```
+
+The response includes a `Retry-After` header (in seconds). Wait that long before retrying.
+
+## Tips
+
+- Cache responses where possible — analytics data is already cached server-side for 120 seconds
+- Batch operations: use bulk revoke instead of revoking keys one at a time
+- If you're polling for changes, 1 request every 30 seconds is plenty

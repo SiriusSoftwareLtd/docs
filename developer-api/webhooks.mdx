@@ -1,0 +1,71 @@
+---
+title: Webhooks
+description: View configured webhook endpoints and event types.
+---
+
+<Info>
+The Developer API requires a **Business plan** (£30/mo). [Upgrade in your dashboard](https://developer.sirius.menu/settings).
+</Info>
+
+## List webhooks
+
+```
+GET /v1/projects/:id/webhooks
+```
+
+Returns all webhook configurations for a project. Webhooks are managed via the dashboard — this endpoint is read-only.
+
+```bash
+curl https://developer.sirius.menu/v1/projects/a1b2.../webhooks \
+  -H "Authorization: Bearer sdt_..."
+```
+
+```json
+{
+  "webhooks": [
+    {
+      "id": "wh1a2b3c-...",
+      "url": "https://discord.com/api/webhooks/1234567890/abcdef...",
+      "events": "[\"version_deployed\",\"execution_drop\"]",
+      "enabled": 1,
+      "created_at": 1712345678,
+      "updated_at": 1712345678
+    }
+  ]
+}
+```
+
+## Event types
+
+| Event | Fires when |
+|-------|-----------|
+| `execution_drop` | Daily executions drop more than 30% day-over-day |
+| `new_executor` | An executor name appears that wasn't seen in the prior 7 days |
+| `key_abuse` | Suspicious key validation patterns detected |
+| `version_deployed` | A new script version is uploaded via the dashboard |
+| `clone_detected` | Multiple script hashes detected for the same Script ID |
+
+## Webhook payload
+
+Webhooks are delivered as Discord embeds. The payload sent to your Discord webhook URL:
+
+```json
+{
+  "embeds": [
+    {
+      "title": "Version Deployed",
+      "color": 2278116,
+      "description": "**My Script Hub** (sid_abc123xyz456)",
+      "fields": [
+        { "name": "Version", "value": "v3", "inline": true },
+        { "name": "Size", "value": "24.0KB", "inline": true },
+        { "name": "Notes", "value": "Fix auto-farm timing", "inline": true }
+      ],
+      "timestamp": "2026-04-05T14:30:00.000Z",
+      "footer": { "text": "Sirius Developer" }
+    }
+  ]
+}
+```
+
+Each event type has its own embed color — green for deploys, red for drops, blue for new executors, amber for abuse alerts, purple for clone detection.

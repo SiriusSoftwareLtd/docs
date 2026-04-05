@@ -1,0 +1,64 @@
+---
+title: Script Versions
+description: List versions and rollback to a previous release.
+---
+
+<Info>
+The Developer API requires a **Business plan** (£30/mo). [Upgrade in your dashboard](https://developer.sirius.menu/settings).
+</Info>
+
+## List versions
+
+```
+GET /v1/projects/:id/versions
+```
+
+Returns all script versions and the currently active version ID.
+
+```bash
+curl https://developer.sirius.menu/v1/projects/a1b2.../versions \
+  -H "Authorization: Bearer sdt_..."
+```
+
+```json
+{
+  "versions": [
+    {
+      "id": "v3f4a5b6-...",
+      "version_number": 3,
+      "uploaded_at": 1712345678,
+      "size_bytes": 24576,
+      "notes": "Fix auto-farm timing"
+    },
+    {
+      "id": "v2e3d4c5-...",
+      "version_number": 2,
+      "uploaded_at": 1712259278,
+      "size_bytes": 23040,
+      "notes": ""
+    }
+  ],
+  "current_version_id": "v3f4a5b6-..."
+}
+```
+
+## Rollback
+
+```
+POST /v1/projects/:id/versions/rollback
+```
+
+Set the active version to a previous release. Takes effect immediately — the next key validation serves the rolled-back version.
+
+```bash
+curl -X POST https://developer.sirius.menu/v1/projects/a1b2.../versions/rollback \
+  -H "Authorization: Bearer sdt_..." \
+  -H "Content-Type: application/json" \
+  -d '{ "version_id": "v2e3d4c5-..." }'
+```
+
+```json
+{ "ok": true, "current_version_id": "v2e3d4c5-..." }
+```
+
+Use this for CI/CD integrations — if your monitoring detects an error spike after a deploy, automatically roll back to the previous version via the API.

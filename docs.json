@@ -82,6 +82,35 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Developer API",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "developer-api/index"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "developer-api/authentication",
+              "developer-api/rate-limits",
+              "developer-api/errors"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "developer-api/projects",
+              "developer-api/analytics",
+              "developer-api/keys",
+              "developer-api/versions",
+              "developer-api/webhooks"
+            ]
+          }
+        ]
       }
     ],
     "global": {

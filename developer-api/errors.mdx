@@ -1,0 +1,50 @@
+---
+title: Error Handling
+description: Standard error format and common status codes.
+---
+
+## Error format
+
+All errors return JSON with an `error` field:
+
+```json
+{ "error": "Description of what went wrong" }
+```
+
+## Status codes
+
+| Code | Meaning | When |
+|------|---------|------|
+| **400** | Bad Request | Missing required field, invalid format, bad JSON |
+| **401** | Unauthorized | Missing or invalid API token |
+| **403** | Forbidden | Wrong plan, not the project owner, feature disabled |
+| **404** | Not Found | Project, key, version, or webhook doesn't exist |
+| **429** | Too Many Requests | Rate limit exceeded |
+| **500** | Server Error | Something broke on our end |
+
+## Examples
+
+**Bad request** — missing a required field:
+
+```bash
+curl -X POST https://developer.sirius.menu/v1/projects/abc123/keys/revoke \
+  -H "Authorization: Bearer sdt_..." \
+  -H "Content-Type: application/json" \
+  -d '{}'
+```
+
+```json
+{ "error": "key_id is required" }
+```
+
+**Not found** — project doesn't exist or you don't own it:
+
+```json
+{ "error": "Project not found" }
+```
+
+**Rate limited:**
+
+```json
+{ "error": "Rate limit exceeded. Maximum 100 requests per minute." }
+```

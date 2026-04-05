@@ -1,0 +1,42 @@
+---
+title: Authentication
+description: How to authenticate requests to the Developer API.
+---
+
+<Info>
+The Developer API requires a **Business plan** (£30/mo). [Upgrade in your dashboard](https://developer.sirius.menu/settings).
+</Info>
+
+## API tokens
+
+Every request needs an `Authorization` header with a Bearer token.
+
+```bash
+curl https://developer.sirius.menu/v1/projects \
+  -H "Authorization: Bearer sdt_a1b2c3d4e5f6..."
+```
+
+Tokens start with `sdt_` and are 68 characters long.
+
+## Creating a token
+
+1. Go to [developer.sirius.menu/settings](https://developer.sirius.menu/settings)
+2. Scroll to **API Tokens**
+3. Enter a name and click **Create token**
+4. Copy the token immediately — it's only shown once
+
+Each token has full access to all projects owned by your account. There's no scope system — a token can do anything you can do in the dashboard.
+
+## Errors
+
+**401 Unauthorized** — missing or invalid token.
+
+```json
+{ "error": "Unauthorized. Use Authorization: Bearer sdt_xxxxx" }
+```
+
+**403 Forbidden** — valid token, but you're not on the Business plan.
+
+```json
+{ "error": "The Developer API requires a Business plan" }
+```

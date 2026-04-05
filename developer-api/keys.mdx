@@ -1,0 +1,87 @@
+---
+title: Key Management
+description: List, revoke, and bulk-revoke keys.
+---
+
+<Info>
+The Developer API requires a **Business plan** (£30/mo). [Upgrade in your dashboard](https://developer.sirius.menu/settings).
+</Info>
+
+## List keys
+
+```
+GET /v1/projects/:id/keys
+```
+
+Paginated list of issued keys. Raw key values are never returned — only metadata.
+
+### Query parameters
+
+| Param | Default | Max | Description |
+|-------|---------|-----|-------------|
+| `limit` | 50 | 100 | Keys per page |
+| `offset` | 0 | — | Pagination offset |
+
+```bash
+curl "https://developer.sirius.menu/v1/projects/a1b2.../keys?limit=10" \
+  -H "Authorization: Bearer sdt_..."
+```
+
+```json
+{
+  "keys": [
+    {
+      "id": "k1a2b3c4-...",
+      "user_hash": "a9f2c8...",
+      "tier": "standard",
+      "watermark": "4f8a2b1c9d3e7f06",
+      "issued_at": 1712345678,
+      "expires_at": 1712432078,
+      "max_uses": null,
+      "current_uses": 14,
+      "revoked": 0
+    }
+  ],
+  "total": 1842
+}
+```
+
+## Revoke a key
+
+```
+POST /v1/projects/:id/keys/revoke
+```
+
+Revoke a single key by its ID. The key immediately stops working.
+
+```bash
+curl -X POST https://developer.sirius.menu/v1/projects/a1b2.../keys/revoke \
+  -H "Authorization: Bearer sdt_..." \
+  -H "Content-Type: application/json" \
+  -d '{ "key_id": "k1a2b3c4-..." }'
+```
+
+```json
+{ "ok": true }
+```
+
+## Bulk revoke by watermark
+
+```
+POST /v1/projects/:id/keys/revoke-bulk
+```
+
+Revoke every key with a matching watermark. Use this when a leaked script dump contains a watermark — extract the 16-character hex string from the `WM_` prefix and pass it here.
+
+```bash
+curl -X POST https://developer.sirius.menu/v1/projects/a1b2.../keys/revoke-bulk \
+  -H "Authorization: Bearer sdt_..." \
+  -H "Content-Type: application/json" \
+  -d '{ "watermark": "4f8a2b1c9d3e7f06" }'
+```
+
+```json
+{ "ok": true, "revoked_count": 3 }
+```
+
+The `watermark` must be exactly 16 lowercase hex characters.

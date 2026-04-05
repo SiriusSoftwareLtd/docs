@@ -1,0 +1,71 @@
+---
+title: Analytics
+description: Query execution analytics for your projects.
+---
+
+<Info>
+The Developer API requires a **Business plan** (£30/mo). [Upgrade in your dashboard](https://developer.sirius.menu/settings).
+</Info>
+
+## Get project analytics
+
+```
+GET /v1/projects/:id/analytics
+```
+
+Returns execution counts, unique users, daily trends, and executor breakdowns. Same data as the dashboard. Cached server-side for 120 seconds.
+
+### Query parameters
+
+| Param | Default | Values | Description |
+|-------|---------|--------|-------------|
+| `period` | `30d` | `7d`, `30d`, `90d` | Time range |
+
+### Example
+
+```bash
+curl "https://developer.sirius.menu/v1/projects/a1b2c3d4-.../analytics?period=7d" \
+  -H "Authorization: Bearer sdt_..."
+```
+
+```json
+{
+  "generated_at": "2026-04-05T14:30:00.000Z",
+  "period": "7d",
+  "executions": {
+    "total": 284920,
+    "today": 12847,
+    "this_period": 78210
+  },
+  "unique_users": {
+    "total": 41330,
+    "today": 3214
+  },
+  "daily_trend": [
+    { "day": "2026-03-30", "n": 11200, "users": 2800 },
+    { "day": "2026-03-31", "n": 10800, "users": 2650 }
+  ],
+  "executors": [
+    { "name": "Wave", "n": 42100 },
+    { "name": "Solara", "n": 31820 }
+  ]
+}
+```
+
+### Response fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `executions.total` | number | All-time execution count |
+| `executions.today` | number | Executions today (UTC) |
+| `executions.this_period` | number | Executions in the selected period |
+| `unique_users.total` | number | All-time unique user hashes |
+| `unique_users.today` | number | Unique users today |
+| `daily_trend` | array | One entry per day: `{ day, n, users }` |
+| `executors` | array | Top 10 executors: `{ name, n }` |
+
+### Errors
+
+- **400** — project not verified, or invalid period
+- **403** — project is paused (downgraded from paid plan)
+- **404** — project not found or you don't own it

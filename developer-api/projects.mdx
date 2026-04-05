@@ -1,0 +1,82 @@
+---
+title: Projects
+description: List and retrieve project details.
+---
+
+<Info>
+The Developer API requires a **Business plan** (£30/mo). [Upgrade in your dashboard](https://developer.sirius.menu/settings).
+</Info>
+
+## List projects
+
+```
+GET /v1/projects
+```
+
+Returns all non-archived projects.
+
+```bash
+curl https://developer.sirius.menu/v1/projects \
+  -H "Authorization: Bearer sdt_..."
+```
+
+```json
+{
+  "projects": [
+    {
+      "id": "a1b2c3d4-5678-9abc-def0-123456789abc",
+      "name": "My Script Hub",
+      "script_id": "sid_abc123xyz456",
+      "verified": 1,
+      "description": "Auto-farm hub for multiple games",
+      "status": "active",
+      "settings_json": "{\"key_system_enabled\":true,\"gate_provider\":\"lootlabs\"}",
+      "created_at": 1712345678,
+      "updated_at": 1712345678
+    }
+  ]
+}
+```
+
+## Get project
+
+```
+GET /v1/projects/:id
+```
+
+Returns full project details including verification token status and current version.
+
+```bash
+curl https://developer.sirius.menu/v1/projects/a1b2c3d4-5678-9abc-def0-123456789abc \
+  -H "Authorization: Bearer sdt_..."
+```
+
+```json
+{
+  "project": {
+    "id": "a1b2c3d4-5678-9abc-def0-123456789abc",
+    "name": "My Script Hub",
+    "script_id": "sid_abc123xyz456",
+    "verified": 1,
+    "verified_at": 1712345000,
+    "description": "Auto-farm hub for multiple games",
+    "status": "active",
+    "settings_json": "{\"key_system_enabled\":true}",
+    "current_version_id": "v1d2e3f4-...",
+    "created_at": 1712345678,
+    "updated_at": 1712345678
+  }
+}
+```
+
+### Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | UUID |
+| `name` | string | Project display name |
+| `script_id` | string | Public identifier (`sid_` prefix) |
+| `verified` | number | 1 if verified, 0 if pending |
+| `status` | string | `active`, `paused`, or `archived` |
+| `settings_json` | string | JSON string with key system config |
+| `current_version_id` | string \| null | Active script version UUID |
