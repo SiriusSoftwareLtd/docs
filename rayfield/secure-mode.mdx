@@ -1,5 +1,5 @@
 ---
-title: Secure Mode
+title: Secure mode
 description: Block all detectable Roblox asset references at runtime so your script stays invisible to anti-cheats.
 tag: "1.74+"
 ---
@@ -29,7 +29,7 @@ getgenv().RAYFIELD_ASSET_ID = 123456789 -- your re-uploaded model
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 ```
 
-If you skip `RAYFIELD_ASSET_ID`, Rayfield still works — but the default model ID remains detectable. See [Anti-Detection](/rayfield/anti-detection) for how to upload your own copy.
+If you skip `RAYFIELD_ASSET_ID`, Rayfield still works — but the default model ID remains detectable. See [Anti-detection](/rayfield/anti-detection) for how to upload your own copy.
 
 ---
 
@@ -65,7 +65,7 @@ The key system UI requires a Roblox model to render. In secure mode, that model 
 - If there's no saved key, the script is blocked. The key prompt can't be shown.
 
 <Warning>
-Secure mode doesn't bypass the key system — it makes it stricter. Users without a saved key are blocked entirely. If you use `KeySystem = true`, make sure users enter their key at least once without secure mode first.
+Secure mode doesn't bypass the key system — it makes it stricter. Users without a saved key are blocked entirely. If you use `KeySystem = true`, make sure your users enter their key at least once without secure mode first.
 </Warning>
 
 ---

@@ -1,5 +1,5 @@
 ---
-title: Key Management
+title: Key management
 description: List, revoke, and bulk-revoke keys.
 ---
 
@@ -71,7 +71,7 @@ curl -X POST https://developer.sirius.menu/v1/projects/a1b2.../keys/revoke \
 POST /v1/projects/:id/keys/revoke-bulk
 ```
 
-Revoke every key with a matching watermark. Use this when a leaked script dump contains a watermark — extract the 16-character hex string from the `WM_` prefix and pass it here.
+Revoke every key with a matching watermark. Use this when a leaked script dump contains a watermark. Extract the 16-character hex string from the `WM_` prefix and pass it here.
 
 ```bash
 curl -X POST https://developer.sirius.menu/v1/projects/a1b2.../keys/revoke-bulk \

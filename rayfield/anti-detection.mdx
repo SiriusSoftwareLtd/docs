@@ -1,16 +1,16 @@
 ---
-title: Anti-Detection
+title: Anti-detection
 description: How to use a custom asset ID to reduce Rayfield's detectability by game anti-cheats.
 ---
 
 ## How Rayfield gets detected
 
-Rayfield loads its UI through `game:GetObjects` with a known asset ID. Most anti-cheats hook this function and check the ID against a blocklist — and since Rayfield's default ID (`10804731440`) is public, it's an easy flag.
+Rayfield loads its UI through `game:GetObjects` with a known asset ID. Most anti-cheats hook this function and check the ID against a blocklist. Since Rayfield's default ID (`10804731440`) is public, it's an easy flag.
 
-The fix is simple: re-upload the UI model to your own account and point Rayfield at your copy. Now every script has its own unique asset ID that anti-cheats don't have on file.
+The fix is simple: re-upload the UI model to your own account and point Rayfield at your copy. Your script gets its own unique asset ID that anti-cheats don't have on file.
 
 <Note>
-This only removes the lowest-hanging detection vector. For full protection, enable [Secure Mode](/rayfield/secure-mode) which blocks all detectable Roblox assets at runtime.
+This only removes the lowest-hanging detection vector. For full protection, enable [Secure mode](/rayfield/secure-mode) which blocks all detectable Roblox assets at runtime.
 </Note>
 
 ---

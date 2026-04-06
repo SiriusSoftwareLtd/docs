@@ -13,7 +13,7 @@ The Developer Platform API requires a **Business plan**. [Upgrade in your dashbo
 GET /v1/projects/:id/webhooks
 ```
 
-Returns all webhook configurations for a project. Webhooks are managed via the dashboard — this endpoint is read-only.
+Returns all webhook configurations for a project. You manage webhooks through the dashboard — this endpoint is read-only.
 
 ```bash
 curl https://developer.sirius.menu/v1/projects/a1b2.../webhooks \
@@ -47,7 +47,7 @@ curl https://developer.sirius.menu/v1/projects/a1b2.../webhooks \
 
 ## Webhook payload
 
-Webhooks are delivered as Discord embeds. The payload sent to your Discord webhook URL:
+Webhooks deliver as Discord embeds. The payload sent to your Discord webhook URL:
 
 ```json
 {

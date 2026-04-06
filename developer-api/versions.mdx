@@ -1,5 +1,5 @@
 ---
-title: Script Versions
+title: Script versions
 description: List versions and rollback to a previous release.
 ---
 
@@ -61,4 +61,4 @@ curl -X POST https://developer.sirius.menu/v1/projects/a1b2.../versions/rollback
 { "ok": true, "current_version_id": "v2e3d4c5-..." }
 ```
 
-Use this for CI/CD integrations — if your monitoring detects an error spike after a deploy, automatically roll back to the previous version via the API.
+You can use this for CI/CD integrations. If your monitoring detects an error spike after a deploy, roll back to the previous version automatically via the API.
