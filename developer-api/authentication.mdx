@@ -4,7 +4,7 @@ description: How to authenticate requests to the Developer Platform API.
 ---
 
 <Info>
-The Developer Platform API requires a **Business plan**. [Upgrade in your dashboard](https://developer.sirius.menu/settings).
+The Developer Platform API requires a **Max plan**. [Upgrade in your dashboard](https://developer.sirius.menu/settings).
 </Info>
 
 ## API tokens
@@ -35,8 +35,8 @@ Each token has full access to all projects owned by your account. There's no sco
 { "error": "Unauthorized. Use Authorization: Bearer sdt_xxxxx" }
 ```
 
-**403 Forbidden** — valid token, but you're not on the Business plan.
+**403 Forbidden** — valid token, but you're not on the Max plan.
 
 ```json
-{ "error": "The Developer Platform API requires a Business plan" }
+{ "error": "The Developer Platform API requires a Max plan" }
 ```

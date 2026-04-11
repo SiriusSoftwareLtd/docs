@@ -21,6 +21,8 @@ local Window = Rayfield:CreateWindow({
    DisableRayfieldPrompts = false,
    DisableBuildWarnings = false, -- Prevents Rayfield from emitting warnings when the script has a version mismatch with the interface.
 
+   -- ScriptID = "sid_xxxxxxxxxxxx", -- Your Script ID from developer.sirius.menu — enables analytics, managed keys, and script hosting
+
    ConfigurationSaving = {
       Enabled = true,
       FolderName = nil, -- Create a custom folder for your hub/game
@@ -82,6 +84,10 @@ local Window = Rayfield:CreateWindow({
 
 <ResponseField name="DisableBuildWarnings" type="boolean">
   Prevents Rayfield from emitting warnings when there is a version mismatch between your script and the interface.
+</ResponseField>
+
+<ResponseField name="ScriptID" type="string">
+  Your Script ID from the [Sirius Developer Platform](https://developer.sirius.menu). Connects your script to the platform for analytics, managed keys, and hosted script delivery. Create a project at [developer.sirius.menu](https://developer.sirius.menu) to get your Script ID.
 </ResponseField>
 
 <ResponseField name="ConfigurationSaving" type="object">
@@ -151,6 +157,10 @@ local Window = Rayfield:CreateWindow({
     </ResponseField>
   </Expandable>
 </ResponseField>
+
+<Tip>
+  Looking for server-validated keys with ad-gated delivery? The [Sirius Developer Platform](https://developer.sirius.menu) offers a managed key system with user-hash locking, per-key watermarks, and ad provider integration — available on all plans including Free.
+</Tip>
 
 ---
 
