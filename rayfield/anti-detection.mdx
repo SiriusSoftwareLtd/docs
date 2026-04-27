@@ -1,5 +1,5 @@
 ---
-title: Anti-Detection
+title: Anti-detection
 description: How to use a custom asset ID to reduce Rayfield's detectability by game anti-cheats.
 ---
 
@@ -74,4 +74,4 @@ local Window = Rayfield:CreateWindow({
 - **Don't touch the model structure.** Upload it as-is. If you rename or rearrange things inside the model, Rayfield won't be able to find what it needs.
 - **Re-upload when Rayfield updates.** If we ship a new UI model, your old copy won't match anymore. Just re-upload the new one.
 - **Try to keep your asset ID to yourself.** If it ends up on a blocklist you just re-upload a new one — not a big deal, just extra work you can avoid.
-- **Key System UI is separate.** It has its own asset ID and only loads when key system is enabled, so it's less of a priority.
+- **Key system UI is separate.** It has its own asset ID and only loads when the key system is enabled, so it's a lower priority.
