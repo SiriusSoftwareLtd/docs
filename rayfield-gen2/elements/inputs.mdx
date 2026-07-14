@@ -1,0 +1,67 @@
+---
+title: Input
+description: A text field that commits when the player is done.
+icon: text-cursor-input
+---
+
+An input is a text field. It commits when the player clicks away or presses enter, not on every keystroke.
+
+```lua
+tab:CreateInput({
+    name = "Max players",
+    numeric = true,
+    value = "16",
+    placeholder = "Enter a number",
+    callback = function(text)
+        print("Committed:", text)
+    end,
+})
+```
+
+<Note>
+  Inputs are full-width and live at the tab level. Create them directly on the tab, not inside a group.
+</Note>
+
+## Properties
+
+<ResponseField name="name" type="string">
+  The label.
+</ResponseField>
+
+<ResponseField name="value" type="string">
+  The initial text.
+</ResponseField>
+
+<ResponseField name="placeholder" type="string">
+  Ghost text shown while the field is empty.
+</ResponseField>
+
+<ResponseField name="numeric" type="boolean" default="false">
+  Accept numbers only. Commits a clean number, and clears if the text is malformed.
+</ResponseField>
+
+<ResponseField name="clearOnFocus" type="boolean" default="false">
+  Empty the field when it gains focus.
+</ResponseField>
+
+<ResponseField name="flag" type="string" default="name">
+  The save key. Optional.
+</ResponseField>
+
+<ResponseField name="forgetState" type="boolean" default="false">
+  Skip saving.
+</ResponseField>
+
+<ResponseField name="callback" type="function">
+  Runs with the text on commit.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".value" type="string">
+  The current text.
+</ResponseField>
+
+<ResponseField name="Set(value, skipCallback?)">
+  Set the text.
+</ResponseField>

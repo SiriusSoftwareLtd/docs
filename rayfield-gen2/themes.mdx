@@ -1,0 +1,110 @@
+---
+title: Themes
+description: Six built-in themes, or bring your own. Swap it live and every colour tweens across.
+icon: swatch-book
+---
+
+Set `theme` to a built-in name or a table, and swap it at any time with `window:ChangeTheme(theme)`. Colours and sizes tween across, so a live change feels intentional rather than abrupt.
+
+```lua
+Rayfield:CreateWindow({ name = "Example", theme = "cobalt" })
+
+window:ChangeTheme("ember")
+```
+
+## Built-in themes
+
+<CardGroup cols={3}>
+  <Card title="Default" />
+  <Card title="Cobalt" />
+  <Card title="Ember" />
+  <Card title="Amethyst" />
+  <Card title="Frost" />
+  <Card title="Rose" />
+</CardGroup>
+
+Pass any of `"default"`, `"cobalt"`, `"ember"`, `"amethyst"`, `"frost"`, or `"rose"`.
+
+## Custom themes
+
+A custom theme only sets the keys it needs. The rest fall back to the default. Any `ColorSequence` key also accepts a single `Color3`, which is widened to a flat gradient for you.
+
+```lua
+-- Recolour just the tab selector. Everything else stays default.
+Rayfield:CreateWindow({
+    theme = {
+        TabColor = Color3.fromRGB(255, 255, 255),
+        TabBackground = ColorSequence.new(Color3.fromRGB(24, 132, 246), Color3.fromRGB(12, 108, 230)),
+        TabStroke = ColorSequence.new(Color3.fromRGB(96, 176, 255), Color3.fromRGB(40, 132, 246)),
+    },
+})
+```
+
+## Theme keys
+
+<AccordionGroup>
+  <Accordion title="Window and shape">
+    | Key | Type | |
+    | --- | --- | --- |
+    | `CornerRoundness` | `UDim` | Window corner radius. |
+    | `WindowColor` | `ColorSequence` | Window background. |
+    | `ShadowColor` | `Color3` | Shadow behind the window, notifications, toasts, and popups. |
+    | `LiveAnimation` | `boolean` | Drifts the window gradient for a livelier feel. |
+    | `PillCornerRadius` | `UDim` | Tab pills and the collapsed icon. |
+    | `ElementCornerRadius` | `UDim` | Element corner radius. |
+  </Accordion>
+  <Accordion title="Text and fonts">
+    | Key | Type | |
+    | --- | --- | --- |
+    | `TitleFont` / `Font` | `Font` | Heading and body fonts. |
+    | `ContentColor` | `Color3` | Element text. |
+    | `TitlingColor` | `Color3` | Title and top-bar text. |
+    | `ElementTextHoverColor` | `Color3` | Element text on hover. |
+    | `ActionColor` | `Color3` | Top-bar icons. |
+  </Accordion>
+  <Accordion title="Tabs">
+    | Key | Type | |
+    | --- | --- | --- |
+    | `TabColor` | `Color3` | Tab text and icons. |
+    | `TabBackground` | `ColorSequence` | Tab pill fill. |
+    | `TabStroke` | `ColorSequence` | Tab pill outline. |
+  </Accordion>
+  <Accordion title="Elements">
+    | Key | Type | |
+    | --- | --- | --- |
+    | `ElementStroke` | `Color3` | Element outline. |
+    | `ElementGradient` | `ColorSequence` | Element fill. |
+    | `ElementStrokeGradient` | `ColorSequence` | Sheen on gradient strokes. |
+    | `ElementTransparency` | `number` | Element fill transparency. |
+    | `ElementStrokeTransparency` | `number` | Outline transparency. |
+    | `ElementStrokeHover` | `Color3` | Outline colour on hover. |
+    | `ElementStrokeHoverTransparency` | `number` | Outline transparency on hover. |
+    | `StatBackground` | `Color3` | Stat card surface. |
+  </Accordion>
+  <Accordion title="Controls">
+    | Key | Type | |
+    | --- | --- | --- |
+    | `AccentColor` / `AccentStroke` | `Color3` | Active toggle, slider glow, and popup primary button. |
+    | `AccentGlow` | `number` | Transparency of the toggle and slider accent glow. `1` hides it. |
+    | `SliderBackground` | `Color3` | Slider track. |
+    | `SliderBackgroundHover` | `Color3` | Slider track on hover. |
+    | `SliderProgress` | `ColorSequence` | Slider fill. |
+    | `SliderStroke` | `Color3` | Slider outline. |
+    | `SliderHandle` | `Color3` | Slider drag handle. |
+    | `ToggleTrack` | `Color3` | Toggle switch track. |
+    | `ToggleTrackTransparency` | `number` | Toggle track transparency. |
+    | `ToggleKnobOff` | `Color3` | Toggle knob when off. On uses `AccentColor`. |
+    | `ToggleKnobOffTransparency` | `number` | Toggle knob transparency when off. |
+    | `DarkToggleOverlay` | `boolean` | Dark wash over the toggle, for light tracks. |
+    | `DropdownHighlight` | `Color3` | Selected option highlight. |
+  </Accordion>
+  <Accordion title="Fields and buttons">
+    | Key | Type | |
+    | --- | --- | --- |
+    | `FieldBackground` | `Color3` | Input and keybind field fill. |
+    | `FieldTransparency` | `number` | Field fill transparency. |
+    | `FieldGlow` | `Color3` | Soft glow behind input and keybind fields. |
+    | `NeutralButton` / `NeutralButtonHover` / `NeutralButtonStroke` | `Color3` | Popup neutral button fill, hover, and edge. |
+    | `ErrorColor` / `ErrorStrokeColor` | `Color3` | Error flash. |
+  </Accordion>
+</AccordionGroup>

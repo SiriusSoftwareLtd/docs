@@ -1,0 +1,47 @@
+---
+title: Secure mode
+description: Ship a build with nothing an anti-cheat can trace back to Rayfield.
+icon: shield-check
+---
+
+Anti-cheats fingerprint menus by the Roblox asset ids they reference, and by probing whether a known id is loaded with `ContentProvider:GetAssetFetchStatus`. Secure mode makes sure nothing loadable can be traced back to Rayfield.
+
+Turn it on by setting a global before you load Rayfield.
+
+```lua
+getgenv().RAYFIELD_SECURE = true
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield/gen2"))()
+```
+
+## Why there is nothing to swap
+
+Gen2 builds its whole interface in code rather than loading a Roblox model, so there is no asset id to swap out and nothing like `RAYFIELD_ASSET_ID` to set. The only detectable surface is icon images, and secure mode handles those two ways.
+
+- **Built-in icons** (chrome, dropdown ticks, and the rest) are downloaded once and served from a local file through `getcustomasset`, so the UI still looks normal.
+- **Your icons**, meaning any raw asset id including Lucide-style ids, are blocked and render blank. Referencing them by id is exactly what gives a menu away.
+
+## Keeping your own icons
+
+Cache them yourself and pass the `getcustomasset` result instead of an id.
+
+```lua
+tab:CreateButton({ name = "Alert", icon = getcustomasset("my-icons/alert.png") })
+```
+
+The net effect: in secure mode the only assets Rayfield ever loads are local `getcustomasset` files, whose content ids are per-machine and cannot be guessed or probed for. No marketplace id and no thumbnail is ever loaded, so `GetAssetFetchStatus` on anything tied to Rayfield comes back empty.
+
+## Avatars still work
+
+Instead of an `rbxthumb://` id, a headshot is fetched once through Roblox's thumbnail API and cached to a local file, exactly like icons. Use `avatar = userId` for this. A raw `rbxthumb://` string you pass yourself is blocked.
+
+## It also goes quiet
+
+Secure mode makes no `warn` or `print` calls, since console output is another thing anti-cheats watch. Config and callback errors that would normally log are swallowed.
+
+<Warning>
+  Develop with secure mode off, then switch it on for release. Because errors are swallowed, a mistake is much harder to spot while it is on.
+</Warning>
+
+<Note>
+  Secure mode needs an executor with file access (`getcustomasset`, `writefile`). If some built-in icons cannot be cached, the window shows a one-off notification so you know a few will be blank.
+</Note>

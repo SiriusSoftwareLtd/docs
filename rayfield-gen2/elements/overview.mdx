@@ -1,0 +1,92 @@
+---
+title: Elements overview
+description: What every element shares, and how their handles behave.
+icon: shapes
+---
+
+Elements are the controls inside a tab. Create one from a tab or group, and it returns a handle you can read from and drive later.
+
+```lua
+local toggle = tab:CreateToggle({ name = "Auto Sprint" })
+print(toggle.value)  -- read
+toggle:Set(true)     -- write
+```
+
+## Shared properties
+
+Every element accepts these on top of its own.
+
+<ResponseField name="name" type="string">
+  The label.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Hint text under the label.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon shown beside the label.
+</ResponseField>
+
+## Value handles
+
+Every value element (toggle, slider, dropdown, input, keybind, color picker) follows the same shape.
+
+- Read the current value from `.value`.
+- Write it with `Set(value)`. This fires the callback, so the change actually takes effect.
+- Pass `Set(value, true)` to skip the callback when you only want to move the UI.
+
+```lua
+local fov = tab:CreateSlider({ name = "FOV", range = { 70, 120 }, value = 90 })
+fov:Set(100)        -- moves the slider and fires the callback
+fov:Set(90, true)   -- moves it silently
+```
+
+## Flags
+
+Value elements save on their own under a key derived from their name. Pass an explicit `flag` when the name is localized, might be renamed, or could collide with another element. Set `forgetState = true` to skip saving entirely.
+
+```lua
+tab:CreateToggle({ name = "Auto Sprint", flag = "AutoSprint" })
+```
+
+Read or write any flag through `window.Flags`, `window:Get`, and `window:Set`. See [Saving](/rayfield-gen2/saving).
+
+## Reordering
+
+Every element handle can move within its tab.
+
+<ResponseField name="MoveTo(index)" />
+<ResponseField name="MoveToTop()" />
+<ResponseField name="MoveToBottom()" />
+<ResponseField name="MoveUp()" />
+<ResponseField name="MoveDown()" />
+
+## The elements
+
+<CardGroup cols={2}>
+  <Card title="Button" icon="square-mouse-pointer" href="/rayfield-gen2/elements/buttons">
+    Run a function on click.
+  </Card>
+  <Card title="Toggle" icon="toggle-left" href="/rayfield-gen2/elements/toggles">
+    Switch a boolean on and off.
+  </Card>
+  <Card title="Slider" icon="sliders-horizontal" href="/rayfield-gen2/elements/sliders">
+    Pick a number in a range.
+  </Card>
+  <Card title="Dropdown" icon="chevron-down" href="/rayfield-gen2/elements/dropdowns">
+    Choose one option or several.
+  </Card>
+  <Card title="Input" icon="text-cursor-input" href="/rayfield-gen2/elements/inputs">
+    A text field.
+  </Card>
+  <Card title="Keybind" icon="keyboard" href="/rayfield-gen2/elements/keybinds">
+    A rebindable key.
+  </Card>
+  <Card title="Color picker" icon="palette" href="/rayfield-gen2/elements/color-pickers">
+    Pick a colour and alpha.
+  </Card>
+  <Card title="Stat" icon="trending-up" href="/rayfield-gen2/elements/stats">
+    A read-only number that rolls on change.
+  </Card>
+</CardGroup>

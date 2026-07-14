@@ -1,0 +1,50 @@
+---
+title: Localization
+description: Translate every label at runtime. English is the source, and you only list what you change.
+icon: languages
+---
+
+Copy resolves through the localization layer, while data like numbers, keys, and hex codes is left alone. English is the source, and each English string is its own key, so a translation table only lists the strings you change. Anything you skip stays in English, and a regional id like `pt-br` beats the bare `pt`.
+
+With no `locale` given, the window follows the player's Roblox language on its own.
+
+## Translation tables
+
+Pass tables keyed by locale id.
+
+```lua
+Rayfield:CreateWindow({
+    name = "Example",
+    translations = {
+        fr = { ["Auto Sprint"] = "Sprint auto", ["Signed in as"] = "Connecté en tant que" },
+        es = { ["Auto Sprint"] = "Sprint automático" },
+    },
+})
+```
+
+Switch languages live, with no rebuild.
+
+```lua
+window:SetLocale("fr")
+```
+
+Add a pack at runtime.
+
+```lua
+window:RegisterTranslations({ de = { ["Auto Sprint"] = "Auto-Sprint" } })
+```
+
+## A custom resolver
+
+To resolve copy yourself, pass a `translator`. It is a function `(source, localeId)` that returns a string, or `nil` to fall through to the tables. It is checked first, so it wins.
+
+```lua
+Rayfield:CreateWindow({
+    name = "Example",
+    translator = function(source, localeId)
+        return myTranslationService(source, localeId)  -- or nil to fall back
+    end,
+})
+```
+
+Swap it at runtime with `window:SetTranslator(fn)`, then re-apply the locale to refresh the screen.

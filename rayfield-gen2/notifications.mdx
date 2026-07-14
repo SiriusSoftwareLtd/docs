@@ -1,0 +1,75 @@
+---
+title: Notifications and toasts
+description: Two ways to tell the player something happened.
+icon: bell
+---
+
+## Notifications
+
+`window:Notify(props)` shows a card in the bottom-right corner. Hover to pause the timer, click to dismiss.
+
+```lua
+window:Notify({
+    title = "Auto-saved",
+    content = "Your configuration was saved.",
+    duration = 5,
+})
+```
+
+<ResponseField name="title" type="string">
+  The first line.
+</ResponseField>
+
+<ResponseField name="content" type="string">
+  The body text. Wraps.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon.
+</ResponseField>
+
+<ResponseField name="duration" type="number">
+  How long it stays on screen, in seconds.
+</ResponseField>
+
+## Toasts
+
+`window:Toast(props)` drops a pill in from the top centre, newest on top. Use it for quick, low-weight confirmations.
+
+```lua
+window:Toast({ title = "Saved", icon = 125823673784681 })
+
+window:Toast({
+    title = "Nova",
+    subtitle = "joined the server",
+    avatar = 1,
+})
+```
+
+<ResponseField name="title" type="string">
+  The main line.
+</ResponseField>
+
+<ResponseField name="subtitle" type="string">
+  A second line.
+</ResponseField>
+
+<ResponseField name="subtitleAbove" type="boolean">
+  Put the subtitle above the title.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon.
+</ResponseField>
+
+<ResponseField name="avatar" type="number">
+  A user id, shown as their headshot.
+</ResponseField>
+
+<ResponseField name="minWidth" type="number">
+  A floor on the width.
+</ResponseField>
+
+<ResponseField name="duration" type="number">
+  How long it stays on screen, in seconds.
+</ResponseField>

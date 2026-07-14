@@ -1,0 +1,63 @@
+---
+title: Saving
+description: State persists on its own. Read it, write it, and keep more than one configuration.
+icon: save
+---
+
+Pass a `configuration` table to `CreateWindow` and the window persists state for you. Every value element saves unless you set `forgetState = true`, and each value restores as its original type.
+
+```lua
+local window = Rayfield:CreateWindow({
+    name = "Example Hub",
+    configuration = {
+        autoSave = true,      -- save on change
+        autoLoad = true,      -- load on first open
+        fileName = "MyConfig",
+        customFolder = "MyGame", -- optional
+    },
+})
+```
+
+Files write to `Rayfield/Configurations/[customFolder/]<fileName>.rfld`. Loading applies each value through its element, so callbacks fire and the config actually takes effect. It is not just the visuals moving.
+
+You can also save and load by hand.
+
+```lua
+window:Save()
+window:Load()
+```
+
+## Reading and writing values
+
+Reach any saved value by its flag, without holding on to the element handle.
+
+```lua
+if window.Flags.AutoSprint then ... end   -- read a live value
+window.Flags.AutoSprint = false           -- set it, updates the UI and fires the callback
+
+window:Get("FieldOfView")                 -- the same read, as a method
+window:Set("FieldOfView", 100)            -- the same write, returns false if the flag is unknown
+
+for flag, value in window.Flags do        -- iterate every saved value
+    print(flag, value)
+end
+```
+
+<Tip>
+  Pass an explicit `flag` to any element when its name is localized, might be renamed, or could collide with another element. A stable flag keeps saved files valid across changes.
+</Tip>
+
+## Multiple configurations
+
+Pass a name to keep several configurations and switch between them. Named configurations live beside the default file in the same folder.
+
+```lua
+window:Save("PvP Loadout")     -- write the current state to a named configuration
+window:Load("PvP Loadout")     -- restore it later
+window:ListConfigs()           -- { "PvP Loadout", ... }
+window:DeleteConfig("PvP Loadout")
+```
+
+<Note>
+  When saving is enabled, the settings tab gains a **Configurations** section so players can save, load, overwrite, and delete configurations with no extra code.
+</Note>

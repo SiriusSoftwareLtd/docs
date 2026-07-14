@@ -1,0 +1,69 @@
+---
+title: Stat
+description: A read-only number that rolls on change and shows how far it moved.
+icon: trending-up
+---
+
+A stat displays a number. When it changes, the digits roll to the new value and a small indicator shows how far it moved. Stats are read-only and do not save.
+
+```lua
+local revenue = tab:CreateStat({
+    name = "Revenue",
+    prefix = "$",
+    value = 12400,
+})
+
+revenue:Set(revenue.value + 500)
+```
+
+## Properties
+
+<ResponseField name="name" type="string">
+  The label.
+</ResponseField>
+
+<ResponseField name="value" type="number" default="0">
+  The initial value.
+</ResponseField>
+
+<ResponseField name="prefix" type="string" default='""'>
+  Text before the number.
+</ResponseField>
+
+<ResponseField name="suffix" type="string" default='""'>
+  Text after the number.
+</ResponseField>
+
+<ResponseField name="display" type="string" default='"value"'>
+  On a compact card, show the `"value"` or the `"change"`.
+</ResponseField>
+
+<ResponseField name="compact" type="boolean" default="false">
+  Show a small card. Forced on inside a row.
+</ResponseField>
+
+<ResponseField name="changeMode" type="string" default='"percentage"'>
+  Show the delta as `"percentage"` or `"absolute"`.
+</ResponseField>
+
+<ResponseField name="changeBaseline" type="string" default='"previous"'>
+  Measure change from the `"previous"` value or the `"initial"` one.
+</ResponseField>
+
+<ResponseField name="numberEasing" type="boolean" default="true">
+  Roll the digits rather than snap to the new value.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".value" type="number">
+  The current value.
+</ResponseField>
+
+<ResponseField name="Set(value)">
+  Set the value.
+</ResponseField>
+
+<ResponseField name="ResetBaseline(value?)">
+  Zero the change indicator.
+</ResponseField>

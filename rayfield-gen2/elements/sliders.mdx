@@ -1,0 +1,68 @@
+---
+title: Slider
+description: Pick a number in a range by dragging.
+icon: sliders-horizontal
+---
+
+A slider picks a number between a minimum and a maximum. The callback fires as it moves.
+
+```lua
+tab:CreateSlider({
+    name = "Field of view",
+    range = { 70, 120 },
+    increment = 1,
+    value = 90,
+    suffix = "°",
+    callback = function(value)
+        workspace.CurrentCamera.FieldOfView = value
+    end,
+})
+```
+
+## Properties
+
+<ResponseField name="name" type="string">
+  The label.
+</ResponseField>
+
+<ResponseField name="range" type="{ number }">
+  The bounds, as `{ min, max }`.
+</ResponseField>
+
+<ResponseField name="increment" type="number">
+  The step the slider snaps to.
+</ResponseField>
+
+<ResponseField name="value" type="number" default="min">
+  The initial value.
+</ResponseField>
+
+<ResponseField name="suffix" type="string">
+  A unit shown after the number.
+</ResponseField>
+
+<ResponseField name="minimal" type="boolean" default="false">
+  Show the track only, with no label. For dense rows.
+</ResponseField>
+
+<ResponseField name="flag" type="string" default="name">
+  The save key. Optional.
+</ResponseField>
+
+<ResponseField name="forgetState" type="boolean" default="false">
+  Skip saving.
+</ResponseField>
+
+<ResponseField name="callback" type="function">
+  Runs with the new value as the slider moves.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".value" type="number">
+  The current value.
+</ResponseField>
+
+<ResponseField name="Set(value, skipCallback?)">
+  Set the value. Pass `true` as the second argument to skip the callback.
+</ResponseField>

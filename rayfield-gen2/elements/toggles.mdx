@@ -1,0 +1,52 @@
+---
+title: Toggle
+description: Switch a boolean on and off.
+icon: toggle-left
+---
+
+A toggle flips a boolean. `CreateSwitch` is an alias for the same element.
+
+```lua
+local sprint = tab:CreateToggle({
+    name = "Auto Sprint",
+    flag = "AutoSprint",
+    value = true,
+    callback = function(value)
+        print("Auto Sprint:", value)
+    end,
+})
+
+sprint:Set(false)
+```
+
+## Properties
+
+<ResponseField name="name" type="string">
+  The label.
+</ResponseField>
+
+<ResponseField name="value" type="boolean" default="false">
+  The initial state.
+</ResponseField>
+
+<ResponseField name="flag" type="string" default="name">
+  The save key. Optional.
+</ResponseField>
+
+<ResponseField name="forgetState" type="boolean" default="false">
+  Skip saving.
+</ResponseField>
+
+<ResponseField name="callback" type="function">
+  Runs with the new value on every change.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".value" type="boolean">
+  The current state.
+</ResponseField>
+
+<ResponseField name="Set(value, skipCallback?)">
+  Set the state. Pass `true` as the second argument to skip the callback.
+</ResponseField>

@@ -1,0 +1,65 @@
+---
+title: Color picker
+description: Pick a colour, and optionally alpha.
+icon: palette
+---
+
+A color picker chooses a colour and, if you want it, an alpha. Drag the map and bars, or type into the fields.
+
+```lua
+tab:CreateColorPicker({
+    name = "Highlight",
+    color = Color3.fromRGB(96, 205, 255),
+    callback = function(color, alpha)
+        print(color, alpha)
+    end,
+})
+```
+
+<Note>
+  Color pickers are full-width and live at the tab level. Create them directly on the tab, not inside a group.
+</Note>
+
+## Properties
+
+<ResponseField name="name" type="string">
+  The label.
+</ResponseField>
+
+<ResponseField name="color" type="Color3 | string">
+  The initial colour. A hex string is accepted.
+</ResponseField>
+
+<ResponseField name="alpha" type="number" default="1">
+  The initial alpha, from 0 to 1.
+</ResponseField>
+
+<ResponseField name="flag" type="string" default="name">
+  The save key. Colour and alpha both persist. Optional.
+</ResponseField>
+
+<ResponseField name="forgetState" type="boolean" default="false">
+  Skip saving.
+</ResponseField>
+
+<ResponseField name="callback" type="function">
+  Runs with `(color, alpha)` on every change.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".value" type="Color3">
+  The current colour.
+</ResponseField>
+
+<ResponseField name=".alpha" type="number">
+  The current alpha.
+</ResponseField>
+
+<ResponseField name="Set(color, skipCallback?)">
+  Set the colour.
+</ResponseField>
+
+<ResponseField name="SetAlpha(alpha, skipCallback?)">
+  Set the alpha.
+</ResponseField>

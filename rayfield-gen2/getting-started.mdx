@@ -1,0 +1,82 @@
+---
+title: Getting started
+description: Load Rayfield Gen2 and build your first window in a few lines.
+icon: rocket
+---
+
+## Load the library
+
+Add one line at the top of your script to pull in Rayfield Gen2.
+
+```lua
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield/gen2"))()
+```
+
+<Note>
+  Gen2 is in preview and the loader URL above is a placeholder until launch. The stable [Rayfield (2022)](/rayfield/getting-started) release loads from `https://sirius.menu/rayfield`.
+</Note>
+
+## Build a window
+
+A window is the entry point. Create one, add a tab, and fill it with elements.
+
+```lua
+local window = Rayfield:CreateWindow({
+    name = "Example Hub",
+    subtitle = "Rayfield Gen2",
+})
+
+local tab = window:CreateTab({ name = "Home", icon = 93364949241311 })
+
+tab:CreateButton({
+    name = "Say hello",
+    callback = function()
+        window:Notify({ title = "Hello", content = "Your first element works." })
+    end,
+})
+
+tab:CreateToggle({
+    name = "Auto Sprint",
+    callback = function(value)
+        print("Auto Sprint:", value)
+    end,
+})
+```
+
+The first visible tab opens on its own, so there is nothing else to wire up.
+
+## Turn on saving
+
+Pass a `configuration` table and the window remembers every value between sessions. Nothing else is required, and each value restores as its original type.
+
+```lua
+local window = Rayfield:CreateWindow({
+    name = "Example Hub",
+    configuration = {
+        autoSave = true,
+        autoLoad = true,
+        fileName = "ExampleHub",
+    },
+})
+```
+
+<Card title="How saving works" icon="save" href="/rayfield-gen2/saving">
+  Flags, multiple configurations, and reading values back out.
+</Card>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Windows" icon="app-window" href="/rayfield-gen2/windows">
+    Titles, tags, themes, and every window method.
+  </Card>
+  <Card title="Tabs and groups" icon="layout-grid" href="/rayfield-gen2/tabs">
+    Organise a tab into sections, columns, and grids.
+  </Card>
+  <Card title="Elements" icon="square-mouse-pointer" href="/rayfield-gen2/elements/overview">
+    Every control you can drop into a tab.
+  </Card>
+  <Card title="Secure mode" icon="shield-check" href="/rayfield-gen2/secure-mode">
+    Ship a build with nothing to fingerprint.
+  </Card>
+</CardGroup>

@@ -1,0 +1,69 @@
+---
+title: Keybind
+description: A rebindable key or mouse button.
+icon: keyboard
+---
+
+A keybind captures a key. Click the box, press a key or mouse button to bind it, and press Backspace to clear.
+
+```lua
+tab:CreateKeybind({
+    name = "Sprint",
+    value = Enum.KeyCode.LeftShift,
+    callback = function(key)
+        print("Pressed", key)
+    end,
+})
+```
+
+<Note>
+  Keybinds are full-width and live at the tab level. Create them directly on the tab, not inside a group.
+</Note>
+
+## Properties
+
+<ResponseField name="name" type="string">
+  The label.
+</ResponseField>
+
+<ResponseField name="value" type="EnumItem | string">
+  The initial bind. A `KeyCode`, a mouse button, or its name.
+</ResponseField>
+
+<ResponseField name="hold" type="boolean" default="false">
+  Hold mode. See below.
+</ResponseField>
+
+<ResponseField name="holdThreshold" type="number" default="0.2">
+  Seconds to hold before a press counts, in hold mode.
+</ResponseField>
+
+<ResponseField name="flag" type="string" default="name">
+  The save key. Optional.
+</ResponseField>
+
+<ResponseField name="forgetState" type="boolean" default="false">
+  Skip saving.
+</ResponseField>
+
+<ResponseField name="callback" type="function">
+  See below.
+</ResponseField>
+
+<ResponseField name="onChanged" type="function">
+  Runs with the new key when the bind itself changes.
+</ResponseField>
+
+## Hold mode
+
+By default `callback(key)` fires on each press. In hold mode it fires `callback(true)` once the key is held past the threshold and `callback(false)` on release, so a quick tap is ignored.
+
+## Handle
+
+<ResponseField name=".value" type="EnumItem">
+  The current bind.
+</ResponseField>
+
+<ResponseField name="Set(value, skipChanged?)">
+  Set the bind. Pass `true` as the second argument to skip `onChanged`.
+</ResponseField>

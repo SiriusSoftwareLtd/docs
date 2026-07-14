@@ -1,0 +1,64 @@
+---
+title: Popups
+description: A modal card over a dimmed backdrop. Use it for a decision or a changelog.
+icon: message-square
+---
+
+`window:Popup(props)` floats a modal card over a dimmed backdrop. Give it `options` for a choice dialog, or `boxes` for a changelog. It returns a handle with `Close()`.
+
+## A choice dialog
+
+```lua
+window:Popup({
+    title = "Reset everything?",
+    content = "This clears every saved value. You can't undo it.",
+    options = {
+        { text = "Cancel" },
+        { text = "Reset", style = "danger", callback = function() end },
+    },
+})
+```
+
+## A changelog
+
+```lua
+window:Popup({
+    title = "What's new",
+    subtitle = "Version 2.1",
+    boxes = {
+        { title = "Modal popups", description = "A new centred dialog.", icon = 93364949241311 },
+        { title = "Faster reveals", description = "Pages open instantly." },
+    },
+    options = { { text = "Got it", style = "primary" } },
+})
+```
+
+## Properties
+
+<ResponseField name="title" type="string" default='"Popup"'>
+  The heading.
+</ResponseField>
+
+<ResponseField name="subtitle" type="string">
+  A smaller line beneath the title.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon beside the title.
+</ResponseField>
+
+<ResponseField name="content" type="string">
+  A body paragraph. Wraps, and scrolls inside the card when long.
+</ResponseField>
+
+<ResponseField name="boxes" type="{ box }">
+  A list of cards, shown instead of a paragraph. Each `box` takes `title`, and optional `description` and `icon`.
+</ResponseField>
+
+<ResponseField name="options" type="{ option }" default="one dismiss button">
+  Footer buttons. Each `option` takes `text`, an optional `style` (`"neutral"`, `"primary"`, or `"danger"`), and an optional `callback` that runs before the popup closes.
+</ResponseField>
+
+<ResponseField name="dismissable" type="boolean" default="true">
+  Let the player click the backdrop or press Escape to close.
+</ResponseField>

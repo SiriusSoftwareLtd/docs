@@ -1,0 +1,44 @@
+---
+title: Tags
+description: A small pill beside the window title.
+icon: tag
+---
+
+A tag is a small pill next to the window title, good for a status or a label. `window:CreateTag(props)` needs at least an icon or some text.
+
+```lua
+local tag = window:CreateTag({
+    text = "us-en",
+    color = Color3.fromRGB(255, 175, 15),
+})
+
+tag:Set({ text = "live", color = Color3.fromRGB(80, 200, 120) })
+```
+
+## Properties
+
+<ResponseField name="text" type="string">
+  The text. `title` also works.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon.
+</ResponseField>
+
+<ResponseField name="color" type="Color3" default="orange">
+  The background. The text auto-contrasts.
+</ResponseField>
+
+<ResponseField name="order" type="number" default="0">
+  Sort order among the tags.
+</ResponseField>
+
+## Handle
+
+<ResponseField name="SetColor(c)" />
+<ResponseField name="SetText(t)" />
+<ResponseField name="SetIcon(i)" />
+<ResponseField name="Set(props)">
+  Update several properties at once.
+</ResponseField>
+<ResponseField name="Remove()" />

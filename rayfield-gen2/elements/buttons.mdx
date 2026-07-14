@@ -1,0 +1,28 @@
+---
+title: Button
+description: Run a function when the player clicks.
+icon: square-mouse-pointer
+---
+
+A button runs its callback when clicked. That is all it does.
+
+```lua
+tab:CreateButton({
+    name = "Reset character",
+    callback = function()
+        game.Players.LocalPlayer.Character:BreakJoints()
+    end,
+})
+```
+
+## Properties
+
+<ResponseField name="name" type="string">
+  The label.
+</ResponseField>
+
+<ResponseField name="callback" type="function">
+  Runs on click.
+</ResponseField>
+
+Buttons also take the [shared](/rayfield-gen2/elements/overview#shared-properties) `description` and `icon`.

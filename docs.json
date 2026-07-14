@@ -76,9 +76,48 @@
         "tab": "Rayfield Gen2",
         "groups": [
           {
-            "group": "Overview",
+            "group": "Get started",
             "pages": [
-              "rayfield-gen2/index"
+              "rayfield-gen2/index",
+              "rayfield-gen2/getting-started",
+              "rayfield-gen2/windows",
+              "rayfield-gen2/tabs"
+            ]
+          },
+          {
+            "group": "Elements",
+            "pages": [
+              "rayfield-gen2/elements/overview",
+              "rayfield-gen2/elements/buttons",
+              "rayfield-gen2/elements/toggles",
+              "rayfield-gen2/elements/sliders",
+              "rayfield-gen2/elements/dropdowns",
+              "rayfield-gen2/elements/inputs",
+              "rayfield-gen2/elements/keybinds",
+              "rayfield-gen2/elements/color-pickers",
+              "rayfield-gen2/elements/stats"
+            ]
+          },
+          {
+            "group": "Feedback",
+            "pages": [
+              "rayfield-gen2/notifications",
+              "rayfield-gen2/popups",
+              "rayfield-gen2/tags"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "rayfield-gen2/saving",
+              "rayfield-gen2/themes",
+              "rayfield-gen2/localization"
+            ]
+          },
+          {
+            "group": "Security",
+            "pages": [
+              "rayfield-gen2/secure-mode"
             ]
           }
         ]

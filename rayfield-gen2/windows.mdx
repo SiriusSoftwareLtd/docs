@@ -1,0 +1,172 @@
+---
+title: Windows
+description: Create a window and control it at runtime. Everything else hangs off the window handle.
+icon: app-window
+---
+
+`Rayfield:CreateWindow(props)` creates the window and returns its handle. Tabs, tags, notifications, popups, and theme changes all come from that handle.
+
+```lua
+local window = Rayfield:CreateWindow({
+    name = "Example Hub",
+    subtitle = "Rayfield Gen2",
+    theme = "cobalt",
+})
+```
+
+## Properties
+
+<ResponseField name="name" type="string" default='"Rayfield Window"'>
+  The window title.
+</ResponseField>
+
+<ResponseField name="subtitle" type="string">
+  A smaller line beneath the title.
+</ResponseField>
+
+<ResponseField name="theme" type="string | table" default='"default"'>
+  A built-in theme name (`"default"`, `"cobalt"`, `"ember"`, `"amethyst"`, `"frost"`, `"rose"`) or a theme table. See [Themes](/rayfield-gen2/themes).
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon shown beside the title.
+</ResponseField>
+
+<ResponseField name="configuration" type="table">
+  Enables saving. See [Saving](/rayfield-gen2/saving).
+
+  <Expandable title="configuration options">
+    <ResponseField name="autoSave" type="boolean">
+      Save on every change.
+    </ResponseField>
+    <ResponseField name="autoLoad" type="boolean">
+      Load saved state the first time the window opens.
+    </ResponseField>
+    <ResponseField name="fileName" type="string" default="window name">
+      Name of the saved file.
+    </ResponseField>
+    <ResponseField name="customFolder" type="string">
+      Optional folder to keep the file in.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="locale" type="string" default="player's locale">
+  Pins the language. Leave it out to follow the player's Roblox language. See [Localization](/rayfield-gen2/localization).
+</ResponseField>
+
+<ResponseField name="translations" type="table">
+  Language tables keyed by locale id.
+</ResponseField>
+
+<ResponseField name="translator" type="function">
+  A custom resolver used instead of tables.
+</ResponseField>
+
+<ResponseField name="fallbackFont" type="Enum.Font | Font" default="BuilderSans">
+  A stand-in font shown in secure mode while the brand font downloads.
+</ResponseField>
+
+## Methods
+
+The window handle exposes everything you need at runtime.
+
+### Building
+
+<ResponseField name="CreateTab(props)" type="Tab">
+  Add a tab. See [Tabs and groups](/rayfield-gen2/tabs).
+</ResponseField>
+
+<ResponseField name="CreateTag(props)" type="Tag">
+  Add a pill beside the title. See [Tags](/rayfield-gen2/tags).
+</ResponseField>
+
+### Messages
+
+<ResponseField name="Notify(props)">
+  Show a notification card in the corner. See [Notifications](/rayfield-gen2/notifications).
+</ResponseField>
+
+<ResponseField name="Toast(props)">
+  Drop a toast in from the top. See [Notifications](/rayfield-gen2/notifications).
+</ResponseField>
+
+<ResponseField name="Popup(props)" type="Popup">
+  Float a modal dialog or changelog over a dimmed backdrop. See [Popups](/rayfield-gen2/popups).
+</ResponseField>
+
+### Visibility
+
+<ResponseField name="Show()">
+  Reveal the window.
+</ResponseField>
+
+<ResponseField name="Hide()">
+  Collapse the window.
+</ResponseField>
+
+<ResponseField name="ToggleHide()">
+  Toggle between shown and hidden.
+</ResponseField>
+
+<ResponseField name="ToggleMinimise()">
+  Collapse to the top bar.
+</ResponseField>
+
+<ResponseField name="Navigate(tab)">
+  Jump to a tab by its handle or name.
+</ResponseField>
+
+<ResponseField name="Unload()">
+  Destroy the interface.
+</ResponseField>
+
+### Theme and language
+
+<ResponseField name="ChangeTheme(theme)">
+  Restyle everything at runtime. Colours and sizes tween across.
+</ResponseField>
+
+<ResponseField name="SetLocale(id)">
+  Switch every label to another language live.
+</ResponseField>
+
+<ResponseField name="SetTranslator(fn)">
+  Swap the copy resolver.
+</ResponseField>
+
+<ResponseField name="RegisterTranslations(t)">
+  Add a language pack at runtime.
+</ResponseField>
+
+### Saving
+
+<ResponseField name="Save(name?)" type="boolean">
+  Save now. Pass a name to target a saved configuration, or leave it out for the default file.
+</ResponseField>
+
+<ResponseField name="Load(name?)" type="boolean">
+  Load now.
+</ResponseField>
+
+<ResponseField name="ListConfigs()" type="{ string }">
+  Names of the saved configurations.
+</ResponseField>
+
+<ResponseField name="DeleteConfig(name)" type="boolean">
+  Delete a saved configuration.
+</ResponseField>
+
+<ResponseField name="Get(flag)" type="any">
+  Read a saved value by its flag. Also available as `window.Flags[flag]`.
+</ResponseField>
+
+<ResponseField name="Set(flag, value)" type="boolean">
+  Write a saved value by its flag. This updates the UI and fires the callback. Returns `false` if the flag is unknown.
+</ResponseField>
+
+```lua
+window:Navigate("Home")
+window:ChangeTheme("ember")
+window:ToggleHide()
+```

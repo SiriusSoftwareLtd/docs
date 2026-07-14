@@ -1,0 +1,75 @@
+---
+title: Dropdown
+description: Choose one option, or several. Filters as you type.
+icon: chevron-down
+---
+
+A dropdown picks one option from a list, or several with `multiSelect`. It filters the list as the player types.
+
+```lua
+tab:CreateDropdown({
+    name = "Modules",
+    multiSelect = true,
+    options = { "Aimbot", "ESP", "Fly", "Noclip" },
+    value = { "ESP" },
+    callback = function(selected)
+        print(selected)  -- { "ESP" }
+    end,
+})
+```
+
+## Properties
+
+<ResponseField name="name" type="string">
+  The label.
+</ResponseField>
+
+<ResponseField name="options" type="{ string }" default="{}">
+  The choices.
+</ResponseField>
+
+<ResponseField name="value" type="string | { string }">
+  The initial selection. A string in single mode, a table in multi.
+</ResponseField>
+
+<ResponseField name="multiSelect" type="boolean" default="false">
+  Allow more than one option at a time.
+</ResponseField>
+
+<ResponseField name="placeholder" type="string">
+  Shown when nothing is selected.
+</ResponseField>
+
+<ResponseField name="flag" type="string" default="name">
+  The save key. Optional.
+</ResponseField>
+
+<ResponseField name="forgetState" type="boolean" default="false">
+  Skip saving.
+</ResponseField>
+
+<ResponseField name="callback" type="function">
+  Runs with the selection. A string in single mode, a `{ string }` in multi.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".value" type="string | { string }">
+  The current selection.
+</ResponseField>
+
+<ResponseField name="Set(value, skipCallback?)">
+  Set the selection.
+</ResponseField>
+
+<ResponseField name="Refresh(options)">
+  Replace the whole option list.
+</ResponseField>
+
+<ResponseField name="Add(option)">
+  Add one option.
+</ResponseField>
+
+<ResponseField name="Remove(option)">
+  Remove one option.
+</ResponseField>
