@@ -6,6 +6,10 @@ icon: palette
 
 A color picker chooses a colour and, if you want it, an alpha. Drag the map and bars, or type into the fields.
 
+<Frame>
+  <img src="/images/gen2/colorpicker.png" alt="An open color picker with map, hue and alpha bars" />
+</Frame>
+
 ```lua
 tab:CreateColorPicker({
     name = "Highlight",
@@ -24,6 +28,14 @@ tab:CreateColorPicker({
 
 <ResponseField name="name" type="string">
   The label.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Hint text under the label. Optional.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon shown beside the label. Optional.
 </ResponseField>
 
 <ResponseField name="color" type="Color3 | string">

@@ -21,8 +21,14 @@ tab:CreateButton({
   The label.
 </ResponseField>
 
+<ResponseField name="description" type="string">
+  Hint text under the label. Optional.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon shown beside the label. Optional.
+</ResponseField>
+
 <ResponseField name="callback" type="function">
   Runs on click.
 </ResponseField>
-
-Buttons also take the [shared](/rayfield-gen2/elements/overview#shared-properties) `description` and `icon`.

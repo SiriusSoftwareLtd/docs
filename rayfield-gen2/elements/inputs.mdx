@@ -6,6 +6,10 @@ icon: text-cursor-input
 
 An input is a text field. It commits when the player clicks away or presses enter, not on every keystroke.
 
+<Frame>
+  <img src="/images/gen2/fields.png" alt="Input, keybind, and color picker elements" />
+</Frame>
+
 ```lua
 tab:CreateInput({
     name = "Max players",
@@ -26,6 +30,14 @@ tab:CreateInput({
 
 <ResponseField name="name" type="string">
   The label.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Hint text under the label. Optional.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon shown beside the label. Optional.
 </ResponseField>
 
 <ResponseField name="value" type="string">

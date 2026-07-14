@@ -6,6 +6,10 @@ icon: keyboard
 
 A keybind captures a key. Click the box, press a key or mouse button to bind it, and press Backspace to clear.
 
+<Frame>
+  <img src="/images/gen2/fields.png" alt="A keybind bound to LeftShift" />
+</Frame>
+
 ```lua
 tab:CreateKeybind({
     name = "Sprint",
@@ -24,6 +28,14 @@ tab:CreateKeybind({
 
 <ResponseField name="name" type="string">
   The label.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Hint text under the label. Optional.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon shown beside the label. Optional.
 </ResponseField>
 
 <ResponseField name="value" type="EnumItem | string">

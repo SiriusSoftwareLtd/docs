@@ -7,6 +7,11 @@
     "light": "#3399FF",
     "dark": "#0070D6"
   },
+  "background": {
+    "color": {
+      "dark": "#0A0A0B"
+    }
+  },
   "appearance": {
     "default": "dark",
     "strict": true

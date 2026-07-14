@@ -6,6 +6,10 @@ icon: trending-up
 
 A stat displays a number. When it changes, the digits roll to the new value and a small indicator shows how far it moved. Stats are read-only and do not save.
 
+<Frame>
+  <img src="/images/gen2/stats.png" alt="Stat cards showing values and their change indicators" />
+</Frame>
+
 ```lua
 local revenue = tab:CreateStat({
     name = "Revenue",
@@ -20,6 +24,14 @@ revenue:Set(revenue.value + 500)
 
 <ResponseField name="name" type="string">
   The label.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Hint text under the label. Optional.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon shown beside the label. Optional.
 </ResponseField>
 
 <ResponseField name="value" type="number" default="0">

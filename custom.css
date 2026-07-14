@@ -34,14 +34,40 @@ aside a {
   padding-left: 0.5rem !important;
 }
 
-/* ── Discord navbar button ───────────────────────────────── */
+/* ── Headings: lighter weight, a touch more tracking ─────── */
+/* The default headings render very heavy with tight tracking, which reads as
+   cramped. Drop to medium and let the letters breathe. */
+h1,
+.prose h1 {
+  font-weight: 500 !important;
+  letter-spacing: -0.005em !important;
+}
+
+h2,
+h3,
+h4,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+}
+
+/* ── Discord navbar button: one flat neutral pill ────────── */
+/* Style the anchor and flatten every nested layer so it reads as a single
+   dark pill instead of two stacked rounded backgrounds. */
 header a[href="https://discord.sirius.menu"] {
-  background-color: #5865F2 !important;
-  border-color: #5865F2 !important;
-  color: #ffffff !important;
+  background-color: #1c1c1f !important;
+  border: 1px solid #2a2a2e !important;
+  color: #ededed !important;
+}
+
+header a[href="https://discord.sirius.menu"] * {
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 header a[href="https://discord.sirius.menu"]:hover {
-  background-color: #4752C4 !important;
-  border-color: #4752C4 !important;
+  background-color: #26262a !important;
+  border-color: #34343a !important;
 }
