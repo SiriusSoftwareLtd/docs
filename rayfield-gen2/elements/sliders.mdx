@@ -42,7 +42,7 @@ tab:CreateSlider({
 </ResponseField>
 
 <ResponseField name="increment" type="number">
-  The step the slider snaps to.
+  The step the slider snaps to, counted from `min`. Both bounds stay reachable even when the span isn't a whole number of steps.
 </ResponseField>
 
 <ResponseField name="value" type="number" default="min">

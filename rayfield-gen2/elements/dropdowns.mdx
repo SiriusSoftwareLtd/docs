@@ -57,7 +57,7 @@ tab:CreateDropdown({
 </ResponseField>
 
 <ResponseField name="callback" type="function">
-  Runs with the selection. A string in single mode, a `{ string }` in multi.
+  Runs with the selection. A string in single mode, a `{ string }` in multi. The table is a copy, so keeping or editing it won't affect the dropdown.
 </ResponseField>
 
 ## Handle
@@ -71,13 +71,13 @@ tab:CreateDropdown({
 </ResponseField>
 
 <ResponseField name="Refresh(options)">
-  Replace the whole option list.
+  Replace the whole option list. Anything selected that is no longer an option is dropped, and the callback runs if that changed the selection.
 </ResponseField>
 
 <ResponseField name="Add(option)">
-  Add one option.
+  Add one option. It respects an open search, so it stays hidden until it matches.
 </ResponseField>
 
 <ResponseField name="Remove(option)">
-  Remove one option.
+  Remove one option. Removing a selected one clears it from the selection and runs the callback.
 </ResponseField>

@@ -20,6 +20,8 @@ local window = Rayfield:CreateWindow({
 
 Files write to `Rayfield/Configurations/[customFolder/]<fileName>.rfld`. Loading applies each value through its element, so callbacks fire and the config actually takes effect. It is not just the visuals moving.
 
+`autoLoad` runs once, when the window first opens, so reopening never overwrites changes the user has made but not saved. Elements you build after that still restore themselves, so a tab you fill in after a server fetch keeps its saved values.
+
 You can also save and load by hand.
 
 ```lua
