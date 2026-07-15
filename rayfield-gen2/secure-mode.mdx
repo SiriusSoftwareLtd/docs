@@ -34,6 +34,21 @@ The net effect: in secure mode the only assets Rayfield ever loads are local `ge
 
 Instead of an `rbxthumb://` id, a headshot is fetched once through Roblox's thumbnail API and cached to a local file, exactly like icons. Use `avatar = userId` for this. A raw `rbxthumb://` string you pass yourself is blocked.
 
+## The font takes the same route
+
+Rayfield's brand font is a marketplace asset like any other, so secure mode never loads it by id. The window opens in a built-in Roblox font, the real faces download and cache locally, and they swap in together once every face is on disk. A first run shows the stand-in until that finishes; later runs read from disk and swap almost immediately.
+
+If any face cannot be cached, Rayfield keeps the stand-in rather than reaching for the remote font. The trade is a plainer typeface, never a traceable one.
+
+Pass `fallbackFont` if the default stand-in clashes with your look. It takes a `Font` or an `Enum.Font`.
+
+```lua
+Rayfield:CreateWindow({
+    name = "My Menu",
+    fallbackFont = Enum.Font.Gotham,
+})
+```
+
 ## It also goes quiet
 
 Secure mode makes no `warn` or `print` calls, since console output is another thing anti-cheats watch. Config and callback errors that would normally log are swallowed.
