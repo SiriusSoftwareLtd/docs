@@ -37,11 +37,11 @@ tab:CreateSlider({
   An icon shown beside the label. Optional.
 </ResponseField>
 
-<ResponseField name="range" type="{ number }">
+<ResponseField name="range" type="{ number }" default="{ 0, 100 }">
   The bounds, as `{ min, max }`.
 </ResponseField>
 
-<ResponseField name="increment" type="number">
+<ResponseField name="increment" type="number" default="1">
   The step the slider snaps to, counted from `min`. Both bounds stay reachable even when the span isn't a whole number of steps.
 </ResponseField>
 

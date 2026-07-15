@@ -27,7 +27,7 @@ Pass any of `"default"`, `"cobalt"`, `"ember"`, `"amethyst"`, `"frost"`, or `"ro
 
 ## Custom themes
 
-A custom theme only sets the keys it needs. The rest fall back to the default. Any `ColorSequence` key also accepts a single `Color3`, which is widened to a flat gradient for you.
+A custom theme only sets the keys it needs. At `CreateWindow` the rest fall back to the default. A later `ChangeTheme` with a partial table overlays the current theme instead — pass a built-in name to reset omitted keys. Any `ColorSequence` key also accepts a single `Color3`, which is widened to a flat gradient for you.
 
 ```lua
 -- Recolour just the tab selector. Everything else stays default.
@@ -52,6 +52,7 @@ Rayfield:CreateWindow({
     | `LiveAnimation` | `boolean` | Drifts the window gradient for a livelier feel. |
     | `PillCornerRadius` | `UDim` | Tab pills and the collapsed icon. |
     | `ElementCornerRadius` | `UDim` | Element corner radius. |
+    | `SurfaceStroke` | `Color3` | Faint rim on window, field, toast, and popup surfaces. |
   </Accordion>
   <Accordion title="Text and fonts">
     | Key | Type | |
@@ -80,6 +81,7 @@ Rayfield:CreateWindow({
     | `ElementStrokeHover` | `Color3` | Outline colour on hover. |
     | `ElementStrokeHoverTransparency` | `number` | Outline transparency on hover. |
     | `StatBackground` | `Color3` | Stat card surface. |
+    | `DividerColor` | `Color3` | Section divider lines. |
   </Accordion>
   <Accordion title="Controls">
     | Key | Type | |
@@ -104,6 +106,7 @@ Rayfield:CreateWindow({
     | `FieldBackground` | `Color3` | Input and keybind field fill. |
     | `FieldTransparency` | `number` | Field fill transparency. |
     | `FieldGlow` | `Color3` | Soft glow behind input and keybind fields. |
+    | `PlaceholderColor` | `Color3` | Input and search placeholder text. |
     | `NeutralButton` / `NeutralButtonHover` / `NeutralButtonStroke` | `Color3` | Popup neutral button fill, hover, and edge. |
     | `ErrorColor` / `ErrorStrokeColor` | `Color3` | Error flash. |
   </Accordion>

@@ -44,7 +44,7 @@ tab:CreateDropdown({
   Allow more than one option at a time.
 </ResponseField>
 
-<ResponseField name="placeholder" type="string">
+<ResponseField name="placeholder" type="string" default="None">
   Shown when nothing is selected.
 </ResponseField>
 
@@ -62,8 +62,9 @@ tab:CreateDropdown({
 
 ## Handle
 
-<ResponseField name=".value" type="string | { string }">
-  The current selection.
+<ResponseField name=".value" type="{ string }">
+  The current selection. Always a table, even in single mode — the choice is the first entry.
+  Only the callback unwraps it to a bare string in single mode.
 </ResponseField>
 
 <ResponseField name="Set(value, skipCallback?)">

@@ -39,6 +39,8 @@ Every value element (toggle, slider, dropdown, input, keybind, color picker) fol
 - Read the current value from `.value`.
 - Write it with `Set(value)`. This fires the callback, so the change actually takes effect.
 - Pass `Set(value, true)` to skip the callback when you only want to move the UI.
+- Keybind is the exception: `Set` fires `onChanged`, never the press callback.
+- Dropdown's `.value` is always a table, even in single mode — see [Dropdown](/rayfield-gen2/elements/dropdowns).
 
 ```lua
 local fov = tab:CreateSlider({ name = "FOV", range = { 70, 120 }, value = 90 })

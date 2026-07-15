@@ -32,8 +32,8 @@ window:Notify({
   An icon.
 </ResponseField>
 
-<ResponseField name="duration" type="number">
-  How long it stays on screen, in seconds.
+<ResponseField name="duration" type="number" default="automatic">
+  How long it stays on screen, in seconds. Defaults to a duration based on the text length, between 3 and 9.
 </ResponseField>
 
 ## Toasts
@@ -78,6 +78,6 @@ window:Toast({
   A floor on the width.
 </ResponseField>
 
-<ResponseField name="duration" type="number">
-  How long it stays on screen, in seconds.
+<ResponseField name="duration" type="number" default="automatic">
+  How long it stays on screen, in seconds. Defaults to a duration based on the text length, between 3 and 9.
 </ResponseField>
