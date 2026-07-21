@@ -72,3 +72,54 @@ header a[href="https://discord.sirius.menu"]:hover {
   background-color: #26262a !important;
   border-color: #34343a !important;
 }
+
+/* ── Rayfield Gen2 → Sentivel cross-promo banner ─────────── */
+/* A slim, humble bar pinned above the content on Gen2 pages. Reuses the same
+   flat dark-pill treatment as the Discord button so it reads as native chrome,
+   not an ad. Sentivel is a sister project, so keep it quiet and honest. */
+a.gen2-banner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.7rem;
+  margin: 0 0 1.75rem;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #a8a8ad !important;
+  background-color: #131315;
+  border: 1px solid #232327;
+  border-radius: 0.7rem;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+a.gen2-banner:hover {
+  background-color: #17171a;
+  border-color: #2e2e33;
+}
+
+a.gen2-banner strong {
+  color: #ededed;
+  font-weight: 500;
+}
+
+.gen2-banner-dot {
+  flex: none;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: #0088ff;
+  box-shadow: 0 0 0 3px rgba(0, 136, 255, 0.15);
+}
+
+.gen2-banner-text {
+  flex: 1 1 16rem;
+}
+
+.gen2-banner-cta {
+  flex: none;
+  color: #0088ff !important;
+  font-weight: 500;
+  white-space: nowrap;
+}
