@@ -44,7 +44,7 @@ window:Notify({
 
 ## Toasts
 
-`window:Toast(props)` drops a pill in from the top centre, newest on top. Use it for quick, low-weight confirmations.
+`window:Toast(props)` drops a pill in from the top centre or rises from the bottom centre, newest on top. Use it for quick, low-weight confirmations.
 
 <Frame>
   <img src="/images/gen2/toast.png" alt="A toast pill dropping in from the top" />
@@ -86,4 +86,8 @@ window:Toast({
 
 <ResponseField name="duration" type="number" default="automatic">
   How long it stays on screen, in seconds. Defaults to a duration based on the text length, between 3 and 9.
+</ResponseField>
+
+<ResponseField name="position" type='"Top" | "Bottom"' default='"Top"'>
+  Where the toast appears. `"Top"` drops in from above; `"Bottom"` rises from below.
 </ResponseField>
