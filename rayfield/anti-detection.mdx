@@ -3,6 +3,10 @@ title: Anti-detection
 description: How to use a custom asset ID to reduce Rayfield's detectability by game anti-cheats.
 ---
 
+import SentivelBanner from '/snippets/sentivel-banner.mdx'
+
+<SentivelBanner />
+
 ## How Rayfield gets detected
 
 Rayfield loads its UI through `game:GetObjects` with a known asset ID. Most anti-cheats hook this function and check the ID against a blocklist — and since Rayfield's default ID (`10804731440`) is public, it's an easy flag.
