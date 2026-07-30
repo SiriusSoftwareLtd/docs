@@ -73,53 +73,142 @@ header a[href="https://discord.sirius.menu"]:hover {
   border-color: #34343a !important;
 }
 
-/* ── Rayfield Gen2 → Sentivel cross-promo banner ─────────── */
-/* A slim, humble bar pinned above the content on Gen2 pages. Reuses the same
-   flat dark-pill treatment as the Discord button so it reads as native chrome,
-   not an ad. Sentivel is a sister project, so keep it quiet and honest. */
-a.gen2-banner {
+/* ── Sentivel cross-promo banner ─────────────────────────── */
+/* A slim bar pinned above the content on Rayfield and Gen2 pages. The bare
+   Sentivel mark sits in a soft white bloom, with a solid white pill for the
+   action, so it reads as a recommendation rather than an ad unit. No borders —
+   a grey stroke fights the glow. No hover animation. */
+a.sv-banner {
+  position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.35rem 0.7rem;
+  gap: 0.55rem 1rem;
   margin: 0 0 1.75rem;
-  padding: 0.6rem 0.85rem;
-  font-size: 0.8rem;
-  line-height: 1.45;
-  color: #a8a8ad !important;
-  background-color: #131315;
-  border: 1px solid #232327;
-  border-radius: 0.7rem;
+  padding: 0.8rem 0.85rem 0.8rem 1.15rem;
+  overflow: hidden;
+  background: linear-gradient(100deg, #17171a 0%, #121214 45%, #0f0f11 100%);
+  border: 1px solid transparent;
+  border-radius: 0.85rem;
   text-decoration: none !important;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
-a.gen2-banner:hover {
-  background-color: #17171a;
-  border-color: #2e2e33;
+/* The bloom. Anchored behind the mark and breathing slowly, so the banner has a
+   light source instead of a flat fill. */
+a.sv-banner::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 15rem;
+  height: 15rem;
+  transform: translate(-40%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.06) 34%,
+    rgba(255, 255, 255, 0) 66%
+  );
+  pointer-events: none;
+  animation: sv-banner-bloom 7s ease-in-out infinite;
 }
 
-a.gen2-banner strong {
-  color: #ededed;
-  font-weight: 500;
+/* Children are positioned so they paint above the bloom. */
+.sv-banner-mark,
+.sv-banner-copy,
+.sv-banner-cta {
+  position: relative;
 }
 
-.gen2-banner-dot {
+.sv-banner-mark {
   flex: none;
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 999px;
-  background: #0088ff;
-  box-shadow: 0 0 0 3px rgba(0, 136, 255, 0.15);
+  display: grid;
+  place-items: center;
+  color: #ffffff;
 }
 
-.gen2-banner-text {
+.sv-banner-mark svg {
+  display: block;
+  width: auto;
+  height: 1.5rem;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.45));
+}
+
+.sv-banner-copy {
   flex: 1 1 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
 }
 
-.gen2-banner-cta {
+/* MDX wraps multi-line inline content in an inner `span[data-as="p"]`, so the
+   flex row has to be declared on that wrapper too — otherwise the gap lands on
+   the wrapper and the badge sits on raw whitespace. */
+.sv-banner-title,
+.sv-banner-title > span:not(.sv-banner-badge) {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.sv-banner-title {
+  color: #f4f4f5;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.sv-banner-badge {
+  color: #a9a9b2;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  padding: 0.1rem 0.42rem;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 0.35rem;
+}
+
+.sv-banner-sub {
+  color: #90909a;
+  font-size: 0.79rem;
+  line-height: 1.4;
+}
+
+.sv-banner-cta,
+.sv-banner-cta > span:not(.sv-banner-arrow) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sv-banner-cta {
   flex: none;
-  color: #0088ff !important;
+  padding: 0.42rem 0.8rem;
+  color: #0a0a0a !important;
+  font-size: 0.79rem;
   font-weight: 500;
   white-space: nowrap;
+  background: #ffffff;
+  border-radius: 0.55rem;
 }
+
+@keyframes sv-banner-bloom {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: translate(-40%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-40%, -50%) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.sv-banner::before {
+    animation: none;
+  }
+}
+
