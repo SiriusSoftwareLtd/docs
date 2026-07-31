@@ -54,7 +54,7 @@ tab:CreateKeybind({
   Seconds to hold before a press counts, in hold mode.
 </ResponseField>
 
-<ResponseField name="flag" type="string" default="name">
+<ResponseField name="flag" type="string" default="derived from name">
   The save key. Optional.
 </ResponseField>
 
@@ -81,5 +81,5 @@ By default `callback(key)` fires on each press. In hold mode it fires `callback(
 </ResponseField>
 
 <ResponseField name="Set(value, skipChanged?)">
-  Set the bind. Pass `true` as the second argument to skip `onChanged`.
+  Set the bind. Pass `true` as the second argument to skip `onChanged`. If the key is the menu toggle key, the bind is refused with a warning and the current one is kept.
 </ResponseField>

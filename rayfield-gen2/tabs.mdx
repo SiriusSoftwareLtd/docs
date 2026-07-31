@@ -10,7 +10,7 @@ import SentivelBanner from '/snippets/sentivel-banner.mdx'
 
 ## Tabs
 
-`window:CreateTab(props)` adds a tab to the sidebar. The first visible tab opens automatically.
+`window:CreateTab(props)` adds a tab to the sidebar. The first visible tab opens automatically. A tab needs at least one of `name` or `icon`.
 
 ```lua
 local tab = window:CreateTab({ name = "Combat", icon = 93364949241311 })
@@ -24,11 +24,11 @@ local tab = window:CreateTab({ name = "Combat", icon = 93364949241311 })
   An icon shown beside the label.
 </ResponseField>
 
-A tab creates any element, plus sections and groups. It also has `Select()`, `Deselect()`, and `Remove()`.
+A tab creates any element, plus sections and groups. It also has `Select(noAnimation?)`, `Deselect(noAnimation?)`, and `Remove()`. Pass `true` to select or deselect without the animation.
 
 ## Sections
 
-A section is a heading that labels the controls beneath it.
+A section is a heading that labels the controls beneath it. `CreateSection` returns a handle that reorders like any element.
 
 ```lua
 tab:CreateSection({ name = "Aiming", icon = 93364949241311 })
@@ -36,7 +36,7 @@ tab:CreateSection({ name = "Aiming", icon = 93364949241311 })
 
 ## Groups
 
-A group arranges its children along one axis. Groups nest, so a row of columns forms a grid. Set `direction` to `"row"` (the default) or `"column"`.
+A group arranges its children along one axis. Groups nest, so a row of columns forms a grid. Set `direction` to `"row"` (the default) or `"column"`; `"horizontal"` and `"vertical"` work as aliases.
 
 <Frame>
   <img src="/images/gen2/groups.png" alt="A two-column grid built from nested groups" />

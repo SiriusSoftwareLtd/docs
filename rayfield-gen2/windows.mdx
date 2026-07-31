@@ -137,10 +137,14 @@ The window handle exposes everything you need at runtime.
   Destroy the interface.
 </ResponseField>
 
+<ResponseField name=".unloaded" type="boolean">
+  `true` once `Unload` has run. The handle is spent after that.
+</ResponseField>
+
 ### Theme and language
 
 <ResponseField name="ChangeTheme(theme)">
-  Restyle everything at runtime. Colours and sizes tween across.
+  Restyle everything at runtime. Colours and numeric values tween across; corner radii, fonts, and gradients apply instantly.
 </ResponseField>
 
 <ResponseField name="SetLocale(id)">
@@ -171,6 +175,10 @@ The window handle exposes everything you need at runtime.
 
 <ResponseField name="DeleteConfig(name)" type="boolean">
   Delete a saved configuration.
+</ResponseField>
+
+<ResponseField name="GetPath()" type="string, string">
+  The directory and full path of the config file.
 </ResponseField>
 
 <ResponseField name="Get(flag)" type="any">

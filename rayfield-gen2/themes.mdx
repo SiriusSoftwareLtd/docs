@@ -8,7 +8,7 @@ import SentivelBanner from '/snippets/sentivel-banner.mdx'
 
 <SentivelBanner />
 
-Set `theme` to a built-in name or a table, and swap it at any time with `window:ChangeTheme(theme)`. Colours and sizes tween across, so a live change feels intentional rather than abrupt.
+Set `theme` to a built-in name or a table, and swap it at any time with `window:ChangeTheme(theme)`. Colours and numeric values tween across, so a live change feels intentional rather than abrupt; corner radii, fonts, and gradients apply instantly.
 
 ```lua
 Rayfield:CreateWindow({ name = "Example", theme = "cobalt" })
@@ -31,7 +31,7 @@ Pass any of `"default"`, `"cobalt"`, `"ember"`, `"amethyst"`, `"frost"`, or `"ro
 
 ## Custom themes
 
-A custom theme only sets the keys it needs. At `CreateWindow` the rest fall back to the default. A later `ChangeTheme` with a partial table overlays the current theme instead — pass a built-in name to reset omitted keys. Any `ColorSequence` key also accepts a single `Color3`, which is widened to a flat gradient for you.
+A custom theme only sets the keys it needs. At `CreateWindow` the rest fall back to the default. Strokes are the exception: set a fill and leave its stroke keys unset (`ElementStroke`, `ElementStrokeGradient`, `ElementStrokeHover`, `TabStroke`) and they are derived from that fill, so a colours-only theme still reads coherently. A later `ChangeTheme` with a partial table overlays the current theme instead — pass a built-in name to reset omitted keys. Any `ColorSequence` key also accepts a single `Color3`, which is widened to a flat gradient for you.
 
 ```lua
 -- Recolour just the tab selector. Everything else stays default.

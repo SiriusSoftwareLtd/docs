@@ -12,7 +12,7 @@ import SentivelBanner from '/snippets/sentivel-banner.mdx'
   alt="Rayfield Gen2"
 />
 
-Rayfield Gen2 is a ground-up rebuild of the Rayfield Interface Suite. It builds its entire interface in code, so there is no model to load and nothing to trace. State saves to disk on its own, the whole interface can be themed and translated at runtime, and every element is designed to feel the same on a phone as it does on a desktop.
+Rayfield Gen2 is a ground-up rebuild of the Rayfield Interface Suite. It builds its entire interface in code, so there is no model to load and nothing to trace. State can save to disk between sessions, the whole interface can be themed and translated at runtime, and every element is designed to feel the same on a phone as it does on a desktop.
 
 Create a window, add tabs, and fill them with elements. That is the whole model.
 
@@ -39,7 +39,7 @@ tab:CreateToggle({
     Built entirely in code with no marketplace model. [Secure mode](/rayfield-gen2/secure-mode) leaves nothing an anti-cheat can fingerprint.
   </Card>
   <Card title="Saves itself" icon="save">
-    Value elements persist automatically and restore as their original type. No boilerplate. See [Saving](/rayfield-gen2/saving).
+    Pass a `configuration` table and every value persists and restores as its original type. No boilerplate. See [Saving](/rayfield-gen2/saving).
   </Card>
   <Card title="Themed at runtime" icon="palette">
     Six built-in themes, or bring your own. Swap it live and every colour tweens across. See [Themes](/rayfield-gen2/themes).

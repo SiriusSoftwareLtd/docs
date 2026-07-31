@@ -53,14 +53,14 @@ tab:CreateInput({
 </ResponseField>
 
 <ResponseField name="numeric" type="boolean" default="false">
-  Accept numbers only. Commits a clean number, and clears if the text is malformed.
+  Accept numbers only. Commits a clean number, and reverts to the previous value if the text is malformed.
 </ResponseField>
 
 <ResponseField name="clearOnFocus" type="boolean" default="false">
   Empty the field when it gains focus.
 </ResponseField>
 
-<ResponseField name="flag" type="string" default="name">
+<ResponseField name="flag" type="string" default="derived from name">
   The save key. Optional.
 </ResponseField>
 
