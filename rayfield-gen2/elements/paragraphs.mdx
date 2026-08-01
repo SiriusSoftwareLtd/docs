@@ -1,0 +1,68 @@
+---
+title: Paragraph
+description: A title with body text under it.
+icon: text-align-left
+---
+
+import SentivelBanner from '/snippets/sentivel-banner.mdx'
+
+<SentivelBanner />
+
+A paragraph is a title with body text under it, on one card. The body wraps and the card grows to fit. Use it for anything too long to sit on a label.
+
+<Frame>
+  <img src="/images/gen2/text.png" alt="A label and three paragraphs in a tab" />
+</Frame>
+
+```lua
+local notes = tab:CreateParagraph({
+    name = "Aimbot",
+    text = "Holds on the closest visible player. Walls block it, so it drops the target when they go behind cover.",
+    icon = "crosshair",
+})
+
+notes:Set("Now tracking the lowest health target instead.")
+```
+
+Either half can be left out. A paragraph with no `name` is body text on its own, and one with no `text` is a title on its own.
+
+```lua
+tab:CreateParagraph({ text = "Read this before you turn anything on." })
+```
+
+<Note>
+  A paragraph holds no value, so it never saves and takes no `flag`.
+</Note>
+
+## Properties
+
+<ResponseField name="name" type="string">
+  The title. Optional.
+</ResponseField>
+
+<ResponseField name="text" type="string">
+  The body under the title. Optional.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon shown beside the title. Optional.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".name" type="string">
+  The current title.
+</ResponseField>
+
+<ResponseField name=".text" type="string">
+  The current body.
+</ResponseField>
+
+<ResponseField name="Set(text, title?)">
+  Replace the body, and the title as well if you pass one. Pass `nil` for the body to leave it as it is.
+</ResponseField>
+
+```lua
+notes:Set(nil, "Aimbot (legit)")  -- title only
+notes:Set("Smoothing raised to 0.4")  -- body only
+```

@@ -100,7 +100,9 @@
               "rayfield-gen2/elements/inputs",
               "rayfield-gen2/elements/keybinds",
               "rayfield-gen2/elements/color-pickers",
-              "rayfield-gen2/elements/stats"
+              "rayfield-gen2/elements/stats",
+              "rayfield-gen2/elements/labels",
+              "rayfield-gen2/elements/paragraphs"
             ]
           },
           {
