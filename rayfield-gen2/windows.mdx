@@ -141,6 +141,20 @@ The window handle exposes everything you need at runtime.
   `true` once `Unload` has run. The handle is spent after that.
 </ResponseField>
 
+### Resizing
+
+The window carries a grip in its bottom-right corner. Drag it to resize, and double-click it to drop back to the size the window fits itself to. A hand-picked size is held through screen changes, down to whatever the screen can carry, and comes back in full once there is room for it again.
+
+Players can turn the grip off under **Resizable window** in the settings tab, and hold its mark still under **Animated resize grip**. Both persist with the rest of the window's settings.
+
+<ResponseField name="resize:SetEnabled(state)">
+  Show or hide the grip from code. Same setting the tab toggles.
+</ResponseField>
+
+```lua
+window.resize:SetEnabled(false)  -- no grip, no resizing
+```
+
 ### Theme and language
 
 <ResponseField name="ChangeTheme(theme)">
