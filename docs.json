@@ -38,7 +38,7 @@
         ]
       },
       {
-        "tab": "Rayfield",
+        "tab": "Rayfield (2022)",
         "groups": [
           {
             "group": "Overview",
@@ -128,47 +128,7 @@
         ]
       },
       {
-        "tab": "Marketplace",
-        "groups": [
-          {
-            "group": "Scripting",
-            "pages": [
-              "marketplace/tier-id"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Developer Platform API",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": [
-              "developer-api/index"
-            ]
-          },
-          {
-            "group": "Guides",
-            "pages": [
-              "developer-api/authentication",
-              "developer-api/rate-limits",
-              "developer-api/errors"
-            ]
-          },
-          {
-            "group": "Endpoints",
-            "pages": [
-              "developer-api/projects",
-              "developer-api/analytics",
-              "developer-api/keys",
-              "developer-api/versions",
-              "developer-api/webhooks"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Scripts API",
+        "tab": "RoScripts API",
         "groups": [
           {
             "group": "Overview",
@@ -200,15 +160,6 @@
               "scripts-api/endpoints/owners",
               "scripts-api/endpoints/misc"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "FAQ",
-        "groups": [
-          {
-            "group": "General",
-            "pages": ["faq/posting"]
           }
         ]
       }
