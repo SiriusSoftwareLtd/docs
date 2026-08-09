@@ -1,0 +1,64 @@
+---
+title: Divider
+description: A rule across the page, or room with nothing in it.
+icon: minus
+---
+
+import SentivelBanner from '/snippets/sentivel-banner.mdx'
+
+<SentivelBanner />
+
+A divider breaks a tab into parts. It draws a rule across the page, with an optional word in the middle of it.
+
+<Frame>
+  <img src="/images/gen2/divider.png" alt="Dividers between groups of elements, one with a word in it" />
+</Frame>
+
+```lua
+tab:CreateToggle({ name = "Auto Sprint" })
+tab:CreateToggle({ name = "Reduced Motion" })
+
+tab:CreateDivider({ text = "Advanced" })
+
+tab:CreateToggle({ name = "Verbose Logging" })
+```
+
+Pass `line = false` for room and no rule, when two groups need separating but a line would be too much.
+
+```lua
+tab:CreateDivider({ line = false, spacing = 24 })
+```
+
+<Note>
+  A divider holds no value, so it never saves and takes no `flag`. For a heading with a name that belongs to what follows it, use a [section](/rayfield-gen2/elements/overview).
+</Note>
+
+## Properties
+
+<ResponseField name="text" type="string">
+  A word in the middle of the rule. Optional. Without one the rule runs the full width.
+</ResponseField>
+
+<ResponseField name="spacing" type="number" default="12">
+  Room above and below, in pixels.
+</ResponseField>
+
+<ResponseField name="line" type="boolean" default="true">
+  `false` draws no rule, leaving only the room.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".text" type="string">
+  The current word, or an empty string.
+</ResponseField>
+
+<ResponseField name="Set(text)">
+  Replace the word. Pass an empty string to clear it, and the rule closes back up into a plain one.
+</ResponseField>
+
+```lua
+local stage = tab:CreateDivider({ text = "Loading" })
+stage:Set("Ready")
+stage:Set("")  -- back to a plain rule
+```

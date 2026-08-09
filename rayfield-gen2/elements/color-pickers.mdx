@@ -28,6 +28,48 @@ tab:CreateColorPicker({
   Color pickers are full-width and live at the tab level. Create them directly on the tab, not inside a group.
 </Note>
 
+## Gradients
+
+Pass `gradient = true` and the picker edits a `ColorSequence` instead of one colour. A bar above the map holds the stops. Click the bar to add one where you clicked, drag a stop to move it, and the button beside the bar removes the one you have selected. The two ends stay put.
+
+<Frame>
+  <img src="/images/gen2/colorpicker-gradient.png" alt="A gradient color picker with four stops on the bar above the map" />
+</Frame>
+
+```lua
+tab:CreateColorPicker({
+    name = "Trail",
+    gradient = true,
+    color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 128)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 200, 255)),
+    }),
+    callback = function(sequence, alpha)
+        trail.Color = sequence
+    end,
+})
+```
+
+The map and bars below edit whichever stop is selected, so the picker works the same way once you have one in hand.
+
+<ResponseField name="gradient" type="boolean" default="false">
+  Edit a `ColorSequence` rather than a single colour.
+</ResponseField>
+
+A gradient picker hands its callback a `ColorSequence`, and `GetValue()` returns the same. `.value` is still the colour of the stop being edited, so read `GetValue()` when you want the whole thing.
+
+```lua
+local picker = tab:CreateColorPicker({ name = "Trail", gradient = true })
+
+picker:GetValue()  -- ColorSequence
+picker.value       -- Color3, the selected stop
+
+picker:Set(ColorSequence.new(Color3.new(1, 0, 0), Color3.new(0, 0, 1)))  -- the whole gradient
+picker:Set(Color3.fromRGB(255, 255, 0))  -- just the selected stop
+```
+
+A single colour passed as `color` is taken as a flat gradient of it, which is also how a configuration saved before the picker was a gradient loads back in.
+
 ## Properties
 
 <ResponseField name="name" type="string">

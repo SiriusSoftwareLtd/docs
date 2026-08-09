@@ -1,0 +1,48 @@
+---
+title: Label
+description: A line of text with no control on it.
+icon: type
+---
+
+import SentivelBanner from '/snippets/sentivel-banner.mdx'
+
+<SentivelBanner />
+
+A label is one line of text on a card. Nothing to press, nothing to read back. Use it for a note beside the controls it belongs to.
+
+<Frame>
+  <img src="/images/gen2/text.png" alt="A label and three paragraphs in a tab" />
+</Frame>
+
+```lua
+local status = tab:CreateLabel({
+    text = "Waiting for a match",
+    icon = 93364949241311,
+})
+
+status:Set("In a match")
+```
+
+<Note>
+  A label holds no value, so it never saves and takes no `flag`. For a heading over a run of elements, use a [section](/rayfield-gen2/elements/overview). For a title with body text under it, use a [paragraph](/rayfield-gen2/elements/paragraphs).
+</Note>
+
+## Properties
+
+<ResponseField name="text" type="string">
+  The line of text. `name` works in its place.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon shown beside the text. Optional.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".text" type="string">
+  The current text.
+</ResponseField>
+
+<ResponseField name="Set(text)">
+  Replace the text. The card grows or shrinks to fit it.
+</ResponseField>
