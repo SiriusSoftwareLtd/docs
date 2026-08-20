@@ -12,9 +12,17 @@ import SentivelBanner from '/snippets/sentivel-banner.mdx'
 
 Add one line at the top of your script to pull in Rayfield Gen2.
 
-```lua
+<CodeGroup>
+```lua Stable
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/gen2"))()
 ```
+
+```lua Preview
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/gen2-preview"))()
+```
+</CodeGroup>
+
+Stable is the release, and what your scripts should load. Preview is a rolling build from `dev` for trying what is coming next. See [Preview](/rayfield-gen2/preview).
 
 ## Build a window
 

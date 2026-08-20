@@ -16,7 +16,8 @@ Rayfield Gen2 is a ground-up rebuild of the Rayfield Interface Suite. It builds 
 
 Create a window, add tabs, and fill them with elements. That is the whole model.
 
-```lua
+<CodeGroup>
+```lua Stable
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/gen2"))()
 
 local window = Rayfield:CreateWindow({
@@ -31,6 +32,25 @@ tab:CreateToggle({
     callback = function(value) print(value) end,
 })
 ```
+
+```lua Preview
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/gen2-preview"))()
+
+local window = Rayfield:CreateWindow({
+    name = "Example",
+    subtitle = "Rayfield Gen2",
+})
+
+local tab = window:CreateTab({ name = "Home", icon = 93364949241311 })
+
+tab:CreateToggle({
+    name = "Auto Sprint",
+    callback = function(value) print(value) end,
+})
+```
+</CodeGroup>
+
+Stable is the release. [Preview](/rayfield-gen2/preview) is a rolling build from `dev`, for trying what is coming next.
 
 ## Highlights
 

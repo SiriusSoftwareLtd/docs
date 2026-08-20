@@ -1,0 +1,37 @@
+---
+title: Preview
+description: A rolling build cut from dev, for trying what is coming next.
+icon: flask-conical
+---
+
+import SentivelBanner from '/snippets/sentivel-banner.mdx'
+
+<SentivelBanner />
+
+Preview is a second channel. It is built from the `dev` branch and republished on every green commit, so it carries work that has not reached a release yet.
+
+```lua
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/gen2-preview"))()
+```
+
+Nothing else changes. Same API, same window, same elements, only a different URL.
+
+## Not for what you ship
+
+Preview is not a supported release. It moves whenever `dev` does, and anything in it can change shape or be dropped before it reaches stable. Pages for features that only exist here say so at the top.
+
+Scripts you hand to other people should load the stable channel.
+
+```lua
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/gen2"))()
+```
+
+## Which build you are on
+
+The bundle opens with a header comment naming the version and the commit it was built from.
+
+```lua
+-- Rayfield Gen2 v1.1.0-preview (a1b2c3d, 2026-08-20)
+```
+
+Quote that line when you report anything you hit on preview.
