@@ -1,0 +1,64 @@
+---
+title: Text
+description: A title, a body, or both, on a card of its own.
+icon: type
+---
+
+import SentivelBanner from '/snippets/sentivel-banner.mdx'
+import PreviewOnly from '/snippets/preview-only.mdx'
+
+<SentivelBanner />
+
+<PreviewOnly />
+
+Text is copy on a page. It carries a title, a body, or both, and the card closes up around whichever half is there. The title renders at 16, the body at 14 and a shade lighter. Text has no value and does not save.
+
+```lua
+tab:CreateText({
+    name = "Read this first",
+    text = "Either half can be left out, and the card closes up around what is left.",
+})
+```
+
+## Properties
+
+<ResponseField name="name" type="string">
+  The title. Optional.
+</ResponseField>
+
+<ResponseField name="text" type="string">
+  The body. Optional.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon shown to the left of the title. Optional.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".name" type="string">
+  The current title.
+</ResponseField>
+
+<ResponseField name=".text" type="string">
+  The current body.
+</ResponseField>
+
+<ResponseField name="Set(text)">
+  Set the body. Pass `""` to clear it.
+</ResponseField>
+
+<ResponseField name="SetTitle(title)">
+  Set the title. Pass `""` to clear it.
+</ResponseField>
+
+```lua
+local status = tab:CreateText({ name = "Status", text = "Waiting." })
+
+status:Set("Connected.")
+status:SetTitle("")  -- body on its own
+```
+
+<Note>
+  Text is full width. Create it on a tab or inside a column group - a row warns and returns `nil`.
+</Note>

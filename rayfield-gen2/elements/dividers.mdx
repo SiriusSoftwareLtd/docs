@@ -1,0 +1,55 @@
+---
+title: Divider
+description: A rule across the page, with a word in the middle or nothing at all.
+icon: minus
+---
+
+import SentivelBanner from '/snippets/sentivel-banner.mdx'
+import PreviewOnly from '/snippets/preview-only.mdx'
+
+<SentivelBanner />
+
+<PreviewOnly />
+
+A divider breaks a page into parts without naming them the way a section does. Give it a word to sit in the middle of the rule, or drop the rule and keep only the room. A divider has no value and does not save.
+
+```lua
+tab:CreateDivider()
+tab:CreateDivider({ text = "or" })
+tab:CreateDivider({ line = false, spacing = 20 })  -- room, no rule
+```
+
+## Properties
+
+<ResponseField name="text" type="string" default='""'>
+  A word in the middle of the rule. Optional.
+</ResponseField>
+
+<ResponseField name="spacing" type="number" default="12">
+  Room above and below, in pixels.
+</ResponseField>
+
+<ResponseField name="line" type="boolean" default="true">
+  `false` draws no rule, leaving only the room.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".text" type="string">
+  The current word. `""` when the rule carries none.
+</ResponseField>
+
+<ResponseField name="Set(text)">
+  Set the word, or pass `""` to clear it and close the rule back up. It works on a divider built without one.
+</ResponseField>
+
+```lua
+local divider = tab:CreateDivider()
+
+divider:Set("advanced")
+divider:Set("")
+```
+
+<Note>
+  A divider is full width. Create it on a tab or inside a column group - a row warns and returns `nil`.
+</Note>
