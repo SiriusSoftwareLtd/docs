@@ -5,6 +5,7 @@ icon: shapes
 ---
 
 import SentivelBanner from '/snippets/sentivel-banner.mdx'
+import PreviewOnly from '/snippets/preview-only.mdx'
 
 <SentivelBanner />
 
@@ -44,7 +45,7 @@ Every value element (toggle, slider, dropdown, input, keybind, color picker) fol
 - Write it with `Set(value)`. This fires the callback, so the change actually takes effect.
 - Pass `Set(value, true)` to skip the callback when you only want to move the UI.
 - Keybind is the exception: `Set` fires `onChanged`, never the press callback.
-- Dropdown's `.value` is always a table, even in single mode — see [Dropdown](/rayfield-gen2/elements/dropdowns).
+- Dropdown's `.value` is always a table, even in single mode - see [Dropdown](/rayfield-gen2/elements/dropdowns).
 
 ```lua
 local fov = tab:CreateSlider({ name = "FOV", range = { 70, 120 }, value = 90 })
@@ -61,6 +62,35 @@ tab:CreateToggle({ name = "Auto Sprint", flag = "AutoSprint" })
 ```
 
 Read or write any flag through `window.Flags`, `window:Get`, and `window:Set`. See [Saving](/rayfield-gen2/saving).
+
+## Locking
+
+<PreviewOnly />
+
+Every element you can operate - button, toggle, slider, dropdown, input, keybind, color picker - can be locked. A locked element dims, stops taking input, and will not fire its callback. That last part is the one that matters: a lock that only greys the pixels is not a lock.
+
+```lua
+local farm = tab:CreateToggle({ name = "Auto Farm", description = "Collects while you idle." })
+
+farm:Lock("Needs a premium key")  -- the reason replaces the description
+farm:Unlock()                     -- and the description comes back
+```
+
+<ResponseField name="Lock(reason?)">
+  Lock it. The reason takes the place of the description while it's locked; without one, the description stays as it was.
+</ResponseField>
+
+<ResponseField name="Unlock()">
+  Unlock it.
+</ResponseField>
+
+<ResponseField name="IsLocked()" type="boolean">
+  Whether it's currently locked.
+</ResponseField>
+
+<Note>
+  `Set` still works on a locked element, so you can move it from code while the player can't. It's user input that's blocked.
+</Note>
 
 ## Reordering
 
@@ -98,6 +128,12 @@ Every element handle can move within its tab.
   </Card>
   <Card title="Stat" icon="trending-up" href="/rayfield-gen2/elements/stats">
     A read-only number that rolls on change.
+  </Card>
+  <Card title="Progress" icon="loader" href="/rayfield-gen2/elements/progress">
+    How far along something is.
+  </Card>
+  <Card title="Console" icon="terminal" href="/rayfield-gen2/elements/console">
+    Live log output, or a block of code.
   </Card>
   <Card title="Text" icon="type" href="/rayfield-gen2/elements/text">
     A title, a body, or both.

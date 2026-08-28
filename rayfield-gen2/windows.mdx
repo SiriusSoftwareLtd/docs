@@ -5,6 +5,7 @@ icon: app-window
 ---
 
 import SentivelBanner from '/snippets/sentivel-banner.mdx'
+import PreviewOnly from '/snippets/preview-only.mdx'
 
 <SentivelBanner />
 
@@ -40,12 +41,26 @@ local window = Rayfield:CreateWindow({
   An icon shown beside the title.
 </ResponseField>
 
+<PreviewOnly />
+
+<ResponseField name="sidebarLayout" type="boolean" default="false">
+  Put the tabs in a rail down the left instead of a strip across the top, and give the content its own card. The window is wider and shorter to suit it. On a narrow screen the rail keeps its icons and drops the labels. See [Tabs](/rayfield-gen2/tabs).
+</ResponseField>
+
+<ResponseField name="profile" type="string">
+  A line under the player's name at the base of the sidebar rail. Leave it out and the name stands on its own. Sidebar layout only.
+</ResponseField>
+
 <ResponseField name="showName" type="string" default='"Rayfield"'>
   Label on the collapsed pill while the window is hidden.
 </ResponseField>
 
 <ResponseField name="showIcon" type="string | number" default="Rayfield icon">
   Icon on the collapsed pill while the window is hidden.
+</ResponseField>
+
+<ResponseField name="showIconOnly" type="boolean" default="false">
+  Collapse to a round icon badge rather than an icon-and-label pill.
 </ResponseField>
 
 <ResponseField name="configuration" type="table">
@@ -96,6 +111,18 @@ The window handle exposes everything you need at runtime.
 <ResponseField name="CreateTag(props)" type="Tag">
   Add a pill beside the title. See [Tags](/rayfield-gen2/tags).
 </ResponseField>
+
+### Sidebar
+
+<PreviewOnly />
+
+<ResponseField name="SetProfile(text?)">
+  Set the line under the player's name in the sidebar rail. Pass nothing to drop it and leave the name on its own. Players can hide the block from the settings tab.
+</ResponseField>
+
+<Note>
+  The collapsed pill can be dragged anywhere on screen and stays where it's put. A press only counts as a tap if the cursor barely moved, so dragging it never opens the window by accident.
+</Note>
 
 ### Messages
 
