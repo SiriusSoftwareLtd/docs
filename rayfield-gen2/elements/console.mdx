@@ -1,0 +1,87 @@
+---
+title: Console
+description: A monospaced block for live log output or code.
+icon: terminal
+tag: Preview
+---
+
+import SentivelBanner from '/snippets/sentivel-banner.mdx'
+import PreviewOnly from '/snippets/preview-only.mdx'
+
+<SentivelBanner />
+
+<PreviewOnly />
+
+A console shows monospaced text. It holds the height you give it and scrolls inside itself, so a console that fills up never pushes the rest of the page down.
+
+```lua
+tab:CreateConsole({
+    name = "Example",
+    text = [[print("Hello world")]],
+})
+```
+
+Set `follow` to make it a console: new lines pin it to the bottom, and once the buffer is full the oldest line rolls off the top.
+
+```lua
+local console = tab:CreateConsole({
+    name = "Console",
+    height = 130,
+    follow = true,
+    maxLines = 200,
+})
+
+console:Append("player joined")
+```
+
+## Properties
+
+<ResponseField name="name" type="string">
+  A label above the block. Optional; without one the block is just the panel.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Hint text under the block. Optional.
+</ResponseField>
+
+<ResponseField name="text" type="string" default='""'>
+  The initial body. `code` also works.
+</ResponseField>
+
+<ResponseField name="height" type="number" default="120">
+  How tall the panel stands, in pixels. Floors at 48.
+</ResponseField>
+
+<ResponseField name="follow" type="boolean" default="false">
+  Jump to the newest line on `Append`, the way a console does.
+</ResponseField>
+
+<ResponseField name="maxLines" type="number" default="200">
+  How many lines to keep. Past this the oldest roll off the top.
+</ResponseField>
+
+## Handle
+
+<ResponseField name="Set(text)">
+  Replace the whole body.
+</ResponseField>
+
+<ResponseField name="Append(line)">
+  Add a line to the end. Multi-line strings are split, so the line cap still counts properly.
+</ResponseField>
+
+<ResponseField name="Clear()">
+  Empty it.
+</ResponseField>
+
+<ResponseField name="Get()" type="string">
+  The lines currently held, oldest first, joined by newlines.
+</ResponseField>
+
+<ResponseField name="Copy()" type="boolean">
+  Put the body on the clipboard. Returns `false` where the executor provides no `setclipboard`.
+</ResponseField>
+
+<ResponseField name="SetHeight(height)">
+  Change how tall the panel stands.
+</ResponseField>

@@ -1,0 +1,110 @@
+---
+title: Progress
+description: A read-only bar showing how far along something is.
+icon: loader
+tag: Preview
+---
+
+import SentivelBanner from '/snippets/sentivel-banner.mdx'
+import PreviewOnly from '/snippets/preview-only.mdx'
+
+<SentivelBanner />
+
+<PreviewOnly />
+
+A progress bar shows how far through a range a value sits. It takes a range the way a slider does, reads as a percentage unless you say otherwise, and is read-only - it carries no flag and saves nothing.
+
+```lua
+local download = tab:CreateProgress({
+    name = "Download",
+    range = { 0, 100 },
+    value = 35,
+})
+
+download:Set(80)
+```
+
+Set `steps` to draw the track as a row of segments instead of one continuous fill, for something that moves through stages rather than a distance.
+
+```lua
+tab:CreateProgress({ name = "Setup", steps = 5, value = 2 }) -- reads "2/5"
+```
+
+Set `indeterminate` when you don't know how long the work will take. The bar sweeps instead of filling, and the first `Set` ends the sweep.
+
+```lua
+local syncing = tab:CreateProgress({ name = "Syncing", indeterminate = true })
+syncing:Set(1) -- done sweeping, now showing a value
+```
+
+## Properties
+
+<ResponseField name="name" type="string">
+  The label.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Hint text under the label. Optional.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon shown beside the label. Optional.
+</ResponseField>
+
+<ResponseField name="range" type="{ number }" default="{ 0, 1 }">
+  The bounds, as `{ min, max }`. With `steps` set and no range given, it defaults to `{ 0, steps }` so the value counts stages.
+</ResponseField>
+
+<ResponseField name="value" type="number" default="min">
+  The initial value. Anything outside the range is clamped.
+</ResponseField>
+
+<ResponseField name="steps" type="number">
+  Draw the track as this many segments. Needs at least 2; anything less is ignored and the bar stays continuous.
+</ResponseField>
+
+<ResponseField name="text" type="string">
+  A fixed readout beside the label, in place of the percentage.
+</ResponseField>
+
+<ResponseField name="format" type="function">
+  Build the readout yourself: `(value, min, max) -> string`. Ignored while `text` is set.
+</ResponseField>
+
+<ResponseField name="showValue" type="boolean" default="true">
+  Set false to hide the readout and show the track alone.
+</ResponseField>
+
+<ResponseField name="indeterminate" type="boolean" default="false">
+  Sweep instead of filling, for work of unknown length.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".value" type="number">
+  The current value.
+</ResponseField>
+
+<ResponseField name="Set(value)">
+  Set the value. Ends the sweep if the bar was indeterminate.
+</ResponseField>
+
+<ResponseField name="Get()" type="number">
+  The current value.
+</ResponseField>
+
+<ResponseField name="GetPercentage()" type="number">
+  Where the value sits in its range, 0 to 1.
+</ResponseField>
+
+<ResponseField name="SetRange(min, max)">
+  Move the bounds. The value comes with them, clamped to whatever the new range allows.
+</ResponseField>
+
+<ResponseField name="SetText(text?)">
+  Replace the readout, or pass nothing to go back to the formatter or the percentage.
+</ResponseField>
+
+<ResponseField name="SetIndeterminate(state)">
+  Switch between a real value and the waiting sweep.
+</ResponseField>

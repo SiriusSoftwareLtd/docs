@@ -102,6 +102,8 @@
               "rayfield-gen2/elements/keybinds",
               "rayfield-gen2/elements/color-pickers",
               "rayfield-gen2/elements/stats",
+              "rayfield-gen2/elements/progress",
+              "rayfield-gen2/elements/console",
               "rayfield-gen2/elements/text",
               "rayfield-gen2/elements/dividers"
             ]
