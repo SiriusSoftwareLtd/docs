@@ -5,7 +5,6 @@ icon: shapes
 ---
 
 import SentivelBanner from '/snippets/sentivel-banner.mdx'
-import PreviewOnly from '/snippets/preview-only.mdx'
 
 <SentivelBanner />
 
@@ -64,8 +63,6 @@ tab:CreateToggle({ name = "Auto Sprint", flag = "AutoSprint" })
 Read or write any flag through `window.Flags`, `window:Get`, and `window:Set`. See [Saving](/rayfield-gen2/saving).
 
 ## Locking
-
-<PreviewOnly />
 
 Every element you can operate - button, toggle, slider, dropdown, input, keybind, color picker - can be locked. A locked element dims, stops taking input, and will not fire its callback. That last part is the one that matters: a lock that only greys the pixels is not a lock.
 

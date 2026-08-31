@@ -5,7 +5,6 @@ icon: app-window
 ---
 
 import SentivelBanner from '/snippets/sentivel-banner.mdx'
-import PreviewOnly from '/snippets/preview-only.mdx'
 
 <SentivelBanner />
 
@@ -40,8 +39,6 @@ local window = Rayfield:CreateWindow({
 <ResponseField name="icon" type="string | number">
   An icon shown beside the title.
 </ResponseField>
-
-<PreviewOnly />
 
 <ResponseField name="sidebarLayout" type="boolean" default="false">
   Put the tabs in a rail down the left instead of a strip across the top, and give the content its own card. The window is wider and shorter to suit it. On a narrow screen the rail keeps its icons and drops the labels. See [Tabs](/rayfield-gen2/tabs).
@@ -113,8 +110,6 @@ The window handle exposes everything you need at runtime.
 </ResponseField>
 
 ### Sidebar
-
-<PreviewOnly />
 
 <ResponseField name="SetProfile(text?)">
   Set the line under the player's name in the sidebar rail. Pass nothing to drop it and leave the name on its own. Players can hide the block from the settings tab.

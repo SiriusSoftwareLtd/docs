@@ -5,7 +5,6 @@ icon: sliders-horizontal
 ---
 
 import SentivelBanner from '/snippets/sentivel-banner.mdx'
-import PreviewOnly from '/snippets/preview-only.mdx'
 
 <SentivelBanner />
 
@@ -74,9 +73,7 @@ tab:CreateSlider({
   Runs with the new value as the slider moves.
 </ResponseField>
 
-<PreviewOnly />
-
-On the preview channel the callback takes a second argument: `(value, dragging)`. `dragging` is true from the moment the handle is grabbed until it is let go, with a final call of false once it settles, so you can show a preview while it moves and commit when it stops.
+The callback takes a second argument: `(value, dragging)`. `dragging` is true from the moment the handle is grabbed until it is let go, with a final call of false once it settles, so you can show a preview while it moves and commit when it stops.
 
 ## Handle
 

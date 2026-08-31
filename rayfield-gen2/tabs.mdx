@@ -36,6 +36,23 @@ A section is a heading that labels the controls beneath it. `CreateSection` retu
 tab:CreateSection({ name = "Aiming", icon = 93364949241311 })
 ```
 
+### Sidebar sections
+
+`window:CreateSection(props)` heads the tab rail the way `tab:CreateSection` heads an element list, grouping the tabs created after it. Same props, and the handle it returns has `Remove()`.
+
+```lua
+window:CreateSection({ name = "General" })
+window:CreateTab({ name = "Home", icon = 93364949241311 })
+window:CreateTab({ name = "Combat" })
+
+window:CreateSection({ name = "Reference" })
+window:CreateTab({ name = "About" })
+```
+
+<Note>
+  The rail only exists in the sidebar layout. Under the default top strip there is nowhere to hang a heading, so `window:CreateSection` does nothing there.
+</Note>
+
 ## Groups
 
 A group arranges its children along one axis. Groups nest, so a row of columns forms a grid. Set `direction` to `"row"` (the default) or `"column"`; `"horizontal"` and `"vertical"` work as aliases.
