@@ -1,0 +1,92 @@
+---
+title: List
+description: An always-visible list of options, single or multi-select.
+icon: rows-3
+---
+
+import Gen2SentivelBanner from '/snippets/gen2-sentivel.mdx'
+
+<Gen2SentivelBanner />
+
+A list shows all options at once, with no search or collapse. Pick one, or several with `multiSelect`.
+
+<Frame>
+  <img src="/images/gen2/lists.png" alt="List element." />
+</Frame>
+
+```lua
+tab:CreateList({
+    name = "Mods",
+    multiSelect = true,
+    options = { "Aimbot", "ESP", "Fly", "Noclip" },
+    value = { "ESP" },
+    callback = function(selected)
+        print(selected)  -- { "ESP" }
+    end,
+})
+```
+
+## Properties
+
+<ResponseField name="name" type="string">
+  The label.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Hint text under the label. Optional.
+</ResponseField>
+
+<ResponseField name="icon" type="string | number">
+  An icon shown beside the label. Optional.
+</ResponseField>
+
+<ResponseField name="options" type="{ string }" default="{}">
+  The choices.
+</ResponseField>
+
+<ResponseField name="value" type="string | { string }">
+  The initial selection. A string in single mode, a table in multi.
+</ResponseField>
+
+<ResponseField name="multiSelect" type="boolean" default="false">
+  Allow more than one option at a time.
+</ResponseField>
+
+<ResponseField name="placeholder" type="string" default="None">
+  Shown when nothing is selected.
+</ResponseField>
+
+<ResponseField name="flag" type="string" default="name">
+  The save key. Optional.
+</ResponseField>
+
+<ResponseField name="forgetState" type="boolean" default="false">
+  Skip saving.
+</ResponseField>
+
+<ResponseField name="callback" type="function">
+  Runs with the selection. A string in single mode, a `{ string }` in multi. The table is a copy, so keeping or editing it won't affect the list.
+</ResponseField>
+
+## Handle
+
+<ResponseField name=".value" type="{ string }">
+  The current selection. Always a table, even in single mode — the choice is the first entry.
+  Only the callback unwraps it to a bare string in single mode.
+</ResponseField>
+
+<ResponseField name="Set(value, skipCallback?)">
+  Set the selection.
+</ResponseField>
+
+<ResponseField name="Refresh(options)">
+  Replace the whole option list. Anything selected that is no longer an option is dropped (single-select picks the first new option automatically), and the callback runs if that changed the selection.
+</ResponseField>
+
+<ResponseField name="Add(option)">
+  Add one option.
+</ResponseField>
+
+<ResponseField name="Remove(option)">
+  Remove one option. Removing a selected one clears it from the selection and runs the callback.
+</ResponseField>
