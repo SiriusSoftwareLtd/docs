@@ -164,6 +164,27 @@ The window handle exposes everything you need at runtime.
   `true` once `Unload` has run. The handle is spent after that.
 </ResponseField>
 
+### Motion
+
+The interface animates at one pace, set library wide rather than per window. Players can change it under **Animation speed** in the settings tab, and it persists with the rest of their settings.
+
+<ResponseField name="SetAnimationSpeed(speed)">
+  How quickly everything animates. `1` is the pace the interface was designed at, higher is quicker. Clamped between `0.25` and `3`.
+</ResponseField>
+
+<ResponseField name="GetAnimationSpeed()" type="number">
+  The pace in use.
+</ResponseField>
+
+```lua
+window:SetAnimationSpeed(1.5)  -- half again as quick
+window:GetAnimationSpeed()     -- 1.5
+```
+
+<Note>
+  This is a preference about motion rather than a property of one window, closer to a system setting, so two windows open at once always animate at the same pace.
+</Note>
+
 ### Theme and language
 
 <ResponseField name="ChangeTheme(theme)">
