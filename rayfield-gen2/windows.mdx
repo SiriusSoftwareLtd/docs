@@ -5,6 +5,7 @@ icon: app-window
 ---
 
 import SentivelBanner from '/snippets/sentivel-banner.mdx'
+import PreviewOnly from '/snippets/preview-only.mdx'
 
 <SentivelBanner />
 
@@ -94,6 +95,12 @@ local window = Rayfield:CreateWindow({
 
 <ResponseField name="fallbackFont" type="Enum.Font | Font" default="BuilderSans">
   A stand-in font shown in secure mode while the brand font downloads.
+</ResponseField>
+
+<PreviewOnly />
+
+<ResponseField name="heartbeat" type="string">
+  A Sentivel ping URL or token. The window pings it while it's open, so you can see whether your script is running. See [Uptime monitoring](/rayfield-gen2/heartbeat).
 </ResponseField>
 
 ## Methods
