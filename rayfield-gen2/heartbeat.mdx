@@ -12,7 +12,7 @@ import PreviewOnly from '/snippets/preview-only.mdx'
 
 <PreviewOnly />
 
-Rayfield can report whether your script is running. Give your window a [Sentivel](https://www.sentivel.com/?ref=sirius-docs) heartbeat, and Rayfield pings it when the window opens and every five minutes while it stays open. While people are running your script, the monitor stays green. If a game update breaks the script or your loader goes down, the pings stop, Sentivel alerts you, and your status page can show it.
+Rayfield can report whether your script is running. Give your window a [Sentivel](https://www.sentivel.com/?ref=sirius-docs) heartbeat, and Rayfield pings it when the window opens and every five minutes while it stays open. While people are running your script, the monitor stays green. If nobody has it open, the monitor reads idle rather than down.
 
 ```lua
 local window = Rayfield:CreateWindow({
@@ -29,8 +29,8 @@ That's all you need to add. Rayfield handles the timing, runs every ping in the 
   <Step title="Create a heartbeat monitor in Sentivel">
     Sign in to [Sentivel](https://www.sentivel.com/?ref=sirius-docs) (it's free to start), open **Monitors**, click **Add a monitor**, and choose **Heartbeat**.
   </Step>
-  <Step title="Pick an interval">
-    **Expected interval** is how often Sentivel expects a ping, and **Grace period** is the extra time it allows before counting the script as down. Rayfield pings every five minutes, so keep the defaults of **Every 5 minutes** and **1 minute**, or go longer. See [Quiet scripts](#quiet-scripts) before you settle on it.
+  <Step title="Set the timing, and choose Show it as idle">
+    Keep the defaults of **Every 5 minutes** for **Expected interval** and **1 minute** for **Grace period**, since Rayfield pings every five minutes. Under **When pings stop**, choose **Show it as idle**. See [When nobody is playing](#when-nobody-is-playing) for why.
   </Step>
   <Step title="Copy the ping URL">
     Sentivel gives the monitor a ping URL of the form `https://www.sentivel.com/api/heartbeat/<token>`. Copy the whole URL. Rayfield needs this link, not the monitor's ID.
@@ -51,14 +51,11 @@ That's all you need to add. Rayfield handles the timing, runs every ping in the 
   Add the monitor to a [Sentivel status page](https://docs.sentivel.com/guides/status-pages) and link it from your Discord. Players can check whether the script is working before they ask.
 </Tip>
 
-## Quiet scripts
+## When nobody is playing
 
-A heartbeat can't tell the difference between a script that broke and a script that nobody has open. When no one is running your script, the pings stop just as they would after a failure.
+Rayfield only pings while someone has your script open, so when nobody is playing, the pings stop just as they would if the script broke. **Show it as idle** tells Sentivel what that silence means: the monitor reads **Idle** rather than down, opens no incident, records no downtime, and goes back to operational as soon as someone opens the script again. On your status page the script shows as **Idle**.
 
-Set the interval to match your traffic:
-
-- **Someone almost always has it open:** **Every 5 minutes**. You find out about problems within minutes.
-- **It has quiet stretches:** set the interval to the longest you would expect to go with nobody running it, such as **Every 6 hours** for a quiet night. You'll hear about a problem more slowly, but a quiet night won't show as an outage.
+Choose **Mark it down** instead only if someone almost always has the script open and you want to be alerted the moment that stops.
 
 ## What to expect
 
