@@ -34,6 +34,8 @@ local Window = Rayfield:CreateWindow({
    DisableRayfieldPrompts = false,
    DisableBuildWarnings = false, -- Prevents Rayfield from emitting warnings when the script has a version mismatch with the interface.
 
+   -- Heartbeat = "https://www.sentivel.com/api/heartbeat/<your token>", -- Pings your Sentivel heartbeat while Rayfield is open, so you can see whether your script is running
+
    -- ScriptID = "sid_xxxxxxxxxxxx", -- Your Script ID from developer.sirius.menu — enables analytics, managed keys, and script hosting
 
    ConfigurationSaving = {
@@ -97,6 +99,10 @@ local Window = Rayfield:CreateWindow({
 
 <ResponseField name="DisableBuildWarnings" type="boolean">
   Prevents Rayfield from emitting warnings when there is a version mismatch between your script and the interface.
+</ResponseField>
+
+<ResponseField name="Heartbeat" type="string">
+  A Sentivel ping URL or token. Rayfield pings it while it's open, so you can see whether your script is running. See [Uptime monitoring](/rayfield/heartbeat).
 </ResponseField>
 
 <ResponseField name="ScriptID" type="string">

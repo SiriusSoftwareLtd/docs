@@ -73,6 +73,21 @@ local window = Rayfield:CreateWindow({
   Flags, multiple configurations, and reading values back out.
 </Card>
 
+## Know when it breaks
+
+Give your window a [Sentivel](https://www.sentivel.com/?ref=sirius-docs) heartbeat, and you'll know when your script stops running before your players tell you.
+
+```lua
+local window = Rayfield:CreateWindow({
+    name = "Example Hub",
+    heartbeat = "https://www.sentivel.com/api/heartbeat/<your token>",
+})
+```
+
+<Card title="Uptime monitoring" icon="heart-pulse" href="/rayfield-gen2/heartbeat">
+  Set up a free heartbeat in a couple of minutes. Preview channel only for now.
+</Card>
+
 ## Next steps
 
 <CardGroup cols={2}>

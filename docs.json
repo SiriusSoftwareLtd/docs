@@ -51,7 +51,8 @@
             "pages": [
               "rayfield/getting-started",
               "rayfield/windows",
-              "rayfield/notifications"
+              "rayfield/notifications",
+              "rayfield/heartbeat"
             ]
           },
           {
@@ -87,7 +88,8 @@
               "rayfield-gen2/getting-started",
               "rayfield-gen2/preview",
               "rayfield-gen2/windows",
-              "rayfield-gen2/tabs"
+              "rayfield-gen2/tabs",
+              "rayfield-gen2/heartbeat"
             ]
           },
           {

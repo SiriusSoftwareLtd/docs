@@ -1,0 +1,85 @@
+---
+title: Uptime monitoring
+description: Give your window a Sentivel heartbeat and see whether your script is running, with no loop to write.
+---
+
+import Gen2Banner from '/snippets/gen2-banner.mdx'
+import SentivelBanner from '/snippets/sentivel-banner.mdx'
+
+<Gen2Banner />
+
+<SentivelBanner />
+
+Rayfield can report whether your script is running. Give your window a [Sentivel](https://www.sentivel.com/?ref=sirius-docs) heartbeat, and Rayfield pings it when the window opens and every five minutes while it stays open. While people are running your script, the monitor stays green. If a game update breaks the script or your loader goes down, the pings stop, Sentivel alerts you, and your status page can show it.
+
+```lua
+local Window = Rayfield:CreateWindow({
+   Name = "Example Hub",
+   Heartbeat = "https://www.sentivel.com/api/heartbeat/<your token>",
+})
+```
+
+That's all you need to add. Rayfield handles the timing, runs every ping in the background, and stops when Rayfield is destroyed. A failed ping never slows down or breaks your script.
+
+## Set it up
+
+<Steps>
+  <Step title="Create a heartbeat monitor in Sentivel">
+    Sign in to [Sentivel](https://www.sentivel.com/?ref=sirius-docs) (it's free to start), open **Monitors**, click **Add a monitor**, and choose **Heartbeat**.
+  </Step>
+  <Step title="Pick an interval">
+    **Expected interval** is how often Sentivel expects a ping, and **Grace period** is the extra time it allows before counting the script as down. Rayfield pings every five minutes, so keep the defaults of **Every 5 minutes** and **1 minute**, or go longer. See [Quiet scripts](#quiet-scripts) before you settle on it.
+  </Step>
+  <Step title="Copy the ping URL">
+    Sentivel gives the monitor a ping URL of the form `https://www.sentivel.com/api/heartbeat/<token>`. Copy the whole URL. Rayfield needs this link, not the monitor's ID.
+  </Step>
+  <Step title="Add it to your window">
+    Pass the URL as `Heartbeat` in `CreateWindow`.
+
+    ```lua
+    local Window = Rayfield:CreateWindow({
+       Name = "Example Hub",
+       Heartbeat = "https://www.sentivel.com/api/heartbeat/<your token>",
+    })
+    ```
+  </Step>
+</Steps>
+
+<Tip>
+  Add the monitor to a [Sentivel status page](https://docs.sentivel.com/guides/status-pages) and link it from your Discord. Players can check whether the script is working before they ask.
+</Tip>
+
+## Quiet scripts
+
+A heartbeat can't tell the difference between a script that broke and a script that nobody has open. When no one is running your script, the pings stop just as they would after a failure.
+
+Set the interval to match your traffic:
+
+- **Someone almost always has it open:** **Every 5 minutes**. You find out about problems within minutes.
+- **It has quiet stretches:** set the interval to the longest you would expect to go with nobody running it, such as **Every 6 hours** for a quiet night. You'll hear about a problem more slowly, but a quiet night won't show as an outage.
+
+## What to expect
+
+- **Pings last as long as Rayfield.** You get one ping when the window opens, after the key system if you use one, then one every five minutes. They stop when you call [`Rayfield:Destroy()`](/rayfield/windows#destroy-the-interface) or the script is run again.
+- **Studio is skipped.** Playtests aren't real runs, so no ping is sent there. The link is still checked, so a typo shows up while you are building.
+- **A bad link warns.** If the link isn't a Sentivel ping URL, Rayfield prints a warning saying what to paste instead and sends nothing. The full URL and the bare token both work, and stray spaces from a paste are fine.
+- **An unknown heartbeat stops.** If Sentivel keeps saying the heartbeat doesn't exist, for example because you deleted the monitor or regenerated its URL, Rayfield prints a warning and stops pinging.
+- **Only Sentivel.** `Heartbeat` refuses any other host, so it can't be used to make other requests.
+
+<Note>
+  [Secure mode](/rayfield/secure-mode) silences Rayfield's console output, including these warnings. Before you ship, run the script once without secure mode and check that the monitor's page says **First ping received**.
+</Note>
+
+<Accordion title="Can someone fake my pings?">
+  The ping URL ships inside your script, so anyone who reads the script can use it. Treat the monitor as a signal that people are running your script, not as proof. If the URL is being misused, click **Regenerate** next to it on the monitor's page and ship the new one.
+</Accordion>
+
+## Reference
+
+<ResponseField name="Heartbeat" type="string">
+  A `CreateWindow` setting. The monitor's ping URL, or just its token. Optional.
+</ResponseField>
+
+<Card title="Sentivel monitors" icon="activity" href="https://docs.sentivel.com/guides/monitors">
+  Monitor types, thresholds, and maintenance.
+</Card>
