@@ -135,10 +135,16 @@
         ]
       },
       {
-        "tab": "RoScripts API",
+        "tab": "RoScripts",
         "groups": [
           {
-            "group": "Overview",
+            "group": "Publish",
+            "pages": [
+              "roscripts/publish"
+            ]
+          },
+          {
+            "group": "API overview",
             "pages": [
               "scripts-api/index"
             ]

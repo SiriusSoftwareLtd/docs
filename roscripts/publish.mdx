@@ -1,0 +1,94 @@
+---
+title: Publish on RoScripts
+description: List your script on RoScripts, get a short loadstring link, and have Scriptsight review it.
+icon: upload
+---
+
+import RoScriptsBanner from '/snippets/roscripts-banner.mdx'
+
+<RoScriptsBanner />
+
+<Frame>
+  ![A Scriptsight Verified listing on RoScripts](/images/roscripts-listing.png)
+</Frame>
+
+[RoScripts](https://roscripts.io/?ref=sirius-docs) is where people find Roblox scripts, sorted by game. Publishing gives your script a page, a short loadstring link that stays the same through every update, and a review by Scriptsight, which reads your code and every file it loads.
+
+Publishing is free. Any script can be listed, whatever UI library it uses.
+
+## Before you publish
+
+You need a RoScripts account with:
+
+- **A confirmed email address.** RoScripts sends the link when you sign up.
+- **A linked Discord account** that is a member of the RoScripts Discord server. The publish page links both and checks them before it shows the form.
+
+## Publish a script
+
+<Steps>
+  <Step title="Open the publish page">
+    Sign in to [RoScripts](https://roscripts.io/?ref=sirius-docs) and click **Publish**.
+  </Step>
+  <Step title="Name it and describe it">
+    The title is up to 45 characters and the short description up to 160. Search results show both, so put the game and the main features first.
+  </Step>
+  <Step title="Pick the game">
+    Search for it by name, or paste its Roblox URL. Choose **Universal** if the script works in any game.
+  </Step>
+  <Step title="Add the source">
+    Paste your script or your loader. A one-line loader is fine:
+
+    ```lua Loader
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/you/hub/main/main.lua"))()
+    ```
+
+    Set **UI library** to **Rayfield** if you built it with Rayfield.
+  </Step>
+  <Step title="Finish the details">
+    Add a 16:9 thumbnail, up to 8 tags, and your Discord invite if you have one. Tick **Has a key system** if people need a key to use it, so the listing shows a Key badge before anyone copies it.
+  </Step>
+  <Step title="Click Publish">
+    The listing goes live with its own page and a loadstring link of the form `https://script.roscripts.io/<id>`.
+  </Step>
+</Steps>
+
+## The loadstring link
+
+People copy a link that runs your current version:
+
+```lua Copied from your listing
+loadstring(game:HttpGet("https://script.roscripts.io/<id>"))()
+```
+
+When you upload a new version, the link stays the same, so scripts and videos that already use it keep working. Every run through the link is counted, and your listing shows its views, total runs, and runs this week.
+
+## Scriptsight review
+
+Scriptsight follows every file your script loads, recovers obfuscated code where it can, and reads the code. What it finds shows on your listing:
+
+- **Scriptsight Verified** when it read all of the code, including everything it loads, and found nothing that works against the person running it. This needs readable source: code compiled with an obfuscator such as Luraph can't be read, so it can't be verified.
+- **A warning** when it finds something that acts against the user without their knowledge, such as sending their account details somewhere or moving their items.
+
+Scriptsight judges only what your script does to the person running it. What it does to other players or to the game is out of scope.
+
+If you think a decision about your script is wrong, open the listing and click **Appeal**. A person reviews it.
+
+## Update your script
+
+Open your listing and click **Edit listing**. Upload the new source and add a short changelog. The version history on your listing keeps every earlier version.
+
+A script that loads its code from GitHub or Pastebin updates when you push. Scriptsight re-checks the files it loads on a schedule and records when the code changed.
+
+## Get more people to it
+
+- **Verified creator badge.** Apply from your RoScripts account once you meet the requirements shown there. Staff review each application.
+- **RoScripts Pro.** Your listings rank higher in Top, Trending, and search, and a Pro mark shows next to your username.
+
+<CardGroup cols={2}>
+  <Card title="Open RoScripts" icon="arrow-up-right" href="https://roscripts.io/upload?ref=sirius-docs">
+    Sign in and publish your first script.
+  </Card>
+  <Card title="RoScripts API" icon="code" href="/scripts-api">
+    Read the catalogue from your own site or bot.
+  </Card>
+</CardGroup>
