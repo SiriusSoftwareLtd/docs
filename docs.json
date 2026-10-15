@@ -123,6 +123,7 @@
             "pages": [
               "rayfield-gen2/saving",
               "rayfield-gen2/themes",
+              "rayfield-gen2/icons",
               "rayfield-gen2/localization"
             ]
           },

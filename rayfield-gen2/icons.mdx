@@ -1,0 +1,61 @@
+---
+title: Icons
+description: What an icon property accepts, and where icons come from.
+icon: image
+---
+
+import SentivelBanner from '/snippets/sentivel-banner.mdx'
+
+<SentivelBanner />
+
+Every `icon` property in Gen2 (windows, tabs, sections, elements, tags, notifications) takes an image. Gen2 has no icon set you pick by name, so a string like `"folder"` shows nothing.
+
+```lua
+window:CreateTab({ name = "Files", icon = 93364949241311 })
+window:CreateTab({ name = "Servers", icon = "rbxassetid://93364949241311" })
+tab:CreateButton({ name = "Alert", icon = getcustomasset("my-icons/alert.png") })
+```
+
+## What it accepts
+
+<ResponseField name="number">
+  A Roblox asset id.
+</ResponseField>
+
+<ResponseField name="rbxassetid://">
+  The same id as a string.
+</ResponseField>
+
+<ResponseField name="rbxasset://">
+  A local file, which is what `getcustomasset` returns. Used as given, in secure mode too.
+</ResponseField>
+
+<ResponseField name="rbxthumb://">
+  A Roblox thumbnail. Blocked in [secure mode](/rayfield-gen2/secure-mode).
+</ResponseField>
+
+`nil`, `0` or `""` means no icon.
+
+## Finding icons
+
+Any image uploaded to Roblox works: copy its asset id. For icons that match each other, upload a set from one icon family, such as Lucide. Upload them at 256 by 256 or larger, because a small image looks soft when it is scaled up.
+
+To keep your own images out of the asset list, save them with `writefile` and pass `getcustomasset(path)`. In [secure mode](/rayfield-gen2/secure-mode) this is the only way your own icons show.
+
+## Built-in icons
+
+These are the icons Gen2 draws its own interface with. Their ids work anywhere an icon does.
+
+| Icon | Id |
+| --- | --- |
+| Close | `83277910885129` |
+| Minimise | `108115485663409` |
+| Maximise | `88738500661569` |
+| Settings | `129180860773723` |
+| Search | `100604009889706` |
+| Chevron | `88479147175134` |
+| Check | `125626312718314` |
+| Configurations | `125823673784681` |
+| Rayfield | `80387863064905` |
+
+There is no built-in folder, server or home icon. Find those in an icon pack.
