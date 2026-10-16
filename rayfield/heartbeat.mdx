@@ -10,7 +10,7 @@ import SentivelBanner from '/snippets/sentivel-banner.mdx'
 
 <SentivelBanner />
 
-Rayfield can report whether your script is running. Give your window a [Sentivel](https://www.sentivel.com/?ref=sirius-docs) heartbeat, and Rayfield pings it when the window opens and every five minutes while it stays open. While people are running your script, the monitor stays green. If nobody has it open, the monitor reads idle rather than down.
+Rayfield can report whether your script is running. Give your window a [Sentivel](https://www.sentivel.com/?ref=sirius-docs&utm_source=sirius-docs&utm_medium=referral&utm_content=rayfield-heartbeat) heartbeat, and Rayfield pings it when the window opens and every five minutes while it stays open. While people are running your script, the monitor stays green. If nobody has it open, the monitor reads idle rather than down.
 
 ```lua
 local Window = Rayfield:CreateWindow({
@@ -25,7 +25,7 @@ That's all you need to add. Rayfield handles the timing, runs every ping in the 
 
 <Steps>
   <Step title="Create a heartbeat monitor in Sentivel">
-    Sign in to [Sentivel](https://www.sentivel.com/?ref=sirius-docs) (it's free to start), open **Monitors**, click **Add a monitor**, and choose **Heartbeat**.
+    Sign in to [Sentivel](https://www.sentivel.com/?ref=sirius-docs&utm_source=sirius-docs&utm_medium=referral&utm_content=rayfield-heartbeat) (it's free to start), open **Monitors**, click **Add a monitor**, and choose **Heartbeat**.
   </Step>
   <Step title="Set the timing, and choose Show it as idle">
     Keep the defaults of **Every 5 minutes** for **Expected interval** and **1 minute** for **Grace period**, since Rayfield pings every five minutes. Under **When pings stop**, choose **Show it as idle**. See [When nobody is playing](#when-nobody-is-playing) for why.
@@ -46,7 +46,7 @@ That's all you need to add. Rayfield handles the timing, runs every ping in the 
 </Steps>
 
 <Tip>
-  Add the monitor to a [Sentivel status page](https://docs.sentivel.com/guides/status-pages) and link it from your Discord. Players can check whether the script is working before they ask.
+  Add the monitor to a [Sentivel status page](https://docs.sentivel.com/guides/status-pages?utm_source=sirius-docs&utm_medium=referral&utm_content=rayfield-heartbeat) and link it from your Discord. Players can check whether the script is working before they ask.
 </Tip>
 
 ## When nobody is playing
@@ -77,6 +77,6 @@ Choose **Mark it down** instead only if someone almost always has the script ope
   A `CreateWindow` setting. The monitor's ping URL, or just its token. Optional.
 </ResponseField>
 
-<Card title="Sentivel monitors" icon="activity" href="https://docs.sentivel.com/guides/monitors">
+<Card title="Sentivel monitors" icon="activity" href="https://docs.sentivel.com/guides/monitors?utm_source=sirius-docs&utm_medium=referral&utm_content=rayfield-heartbeat">
   Monitor types, thresholds, and maintenance.
 </Card>
