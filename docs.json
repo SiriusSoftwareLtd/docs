@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Developer Suite",
+  "name": "Sirius Docs",
   "colors": {
     "primary": "#0088FF",
     "light": "#3399FF",
@@ -33,7 +33,9 @@
         "groups": [
           {
             "group": "Home",
-            "pages": ["index"]
+            "pages": [
+              "index"
+            ]
           }
         ]
       },
@@ -220,5 +222,157 @@
     "socials": {
       "github": "https://github.com/SiriusSoftwareLtd"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/rayfield/configuration/booting-library",
+      "destination": "/rayfield/getting-started",
+      "permanent": true
+    },
+    {
+      "source": "/rayfield/configuration/windows",
+      "destination": "/rayfield/windows",
+      "permanent": true
+    },
+    {
+      "source": "/rayfield/configuration/themes",
+      "destination": "/rayfield/themes",
+      "permanent": true
+    },
+    {
+      "source": "/rayfield/interaction/interactive-elements",
+      "destination": "/rayfield/elements/interactive",
+      "permanent": true
+    },
+    {
+      "source": "/rayfield/interaction/keybinds",
+      "destination": "/rayfield/elements/keybinds",
+      "permanent": true
+    },
+    {
+      "source": "/rayfield/ui-components/text",
+      "destination": "/rayfield/elements/text",
+      "permanent": true
+    },
+    {
+      "source": "/gen2",
+      "destination": "/rayfield-gen2",
+      "permanent": true
+    },
+    {
+      "source": "/gen2/setting-up/getting-started",
+      "destination": "/rayfield-gen2/getting-started",
+      "permanent": true
+    },
+    {
+      "source": "/gen2/setting-up/windows",
+      "destination": "/rayfield-gen2/windows",
+      "permanent": true
+    },
+    {
+      "source": "/gen2/setting-up/themes",
+      "destination": "/rayfield-gen2/themes",
+      "permanent": true
+    },
+    {
+      "source": "/gen2/setting-up/icons",
+      "destination": "/rayfield-gen2/icons",
+      "permanent": true
+    },
+    {
+      "source": "/gen2/setting-up/notifications",
+      "destination": "/rayfield-gen2/notifications",
+      "permanent": true
+    },
+    {
+      "source": "/gen2/interaction/button",
+      "destination": "/rayfield-gen2/elements/buttons",
+      "permanent": true
+    },
+    {
+      "source": "/gen2/interaction/toggle",
+      "destination": "/rayfield-gen2/elements/toggles",
+      "permanent": true
+    },
+    {
+      "source": "/gen2/interaction/keybinds",
+      "destination": "/rayfield-gen2/elements/keybinds",
+      "permanent": true
+    },
+    {
+      "source": "/gen2/ui-components/text",
+      "destination": "/rayfield-gen2/elements/text",
+      "permanent": true
+    },
+    {
+      "source": "/gen2/:slug*",
+      "destination": "/rayfield-gen2",
+      "permanent": true
+    },
+    {
+      "source": "/community/arrayfield",
+      "destination": "/rayfield",
+      "permanent": true
+    },
+    {
+      "source": "/community/arrayfield/configuration/booting-library",
+      "destination": "/rayfield/getting-started",
+      "permanent": true
+    },
+    {
+      "source": "/community/arrayfield/configuration/windows",
+      "destination": "/rayfield/windows",
+      "permanent": true
+    },
+    {
+      "source": "/community/arrayfield/interaction/interactive-elements",
+      "destination": "/rayfield/elements/interactive",
+      "permanent": true
+    },
+    {
+      "source": "/community/arrayfield/interaction/keybinds",
+      "destination": "/rayfield/elements/keybinds",
+      "permanent": true
+    },
+    {
+      "source": "/community/arrayfield/ui-components/text",
+      "destination": "/rayfield/elements/text",
+      "permanent": true
+    },
+    {
+      "source": "/community/arrayfield/:slug*",
+      "destination": "/rayfield",
+      "permanent": true
+    },
+    {
+      "source": "/sense",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/sense/:slug*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/faq/guide/:slug*",
+      "destination": "/faq/posting",
+      "permanent": true
+    },
+    {
+      "source": "/rayfield/configuration/:slug*",
+      "destination": "/rayfield",
+      "permanent": true
+    },
+    {
+      "source": "/rayfield/interaction/:slug*",
+      "destination": "/rayfield/elements/interactive",
+      "permanent": true
+    },
+    {
+      "source": "/rayfield/ui-components/:slug*",
+      "destination": "/rayfield/elements/text",
+      "permanent": true
+    }
+  ]
 }
