@@ -1,0 +1,34 @@
+---
+title: The "Show Rayfield" button
+sidebarTitle: Show Rayfield button
+description: What the "Show Rayfield" button at the top of your screen does, and how to bring a hidden Rayfield window back on mobile or PC.
+---
+
+If a script you run uses Rayfield and you hide its window, a button reading **Show Rayfield** appears at the top of the screen. Tap it and the window comes back.
+
+The button only appears on touch devices, such as phones and tablets. Some scripts change the label, so it may say **Show** followed by the script's own name.
+
+## Bring the window back
+
+<Tabs>
+  <Tab title="Mobile">
+    Tap **Show Rayfield** at the top centre of the screen.
+  </Tab>
+  <Tab title="PC">
+    Press <kbd>K</kbd>. If the script set its own key, press that one. When you hide the window with its hide button, Rayfield names the key in a notification.
+  </Tab>
+</Tabs>
+
+## For script developers
+
+The button label comes from `ShowText` in `CreateWindow`, and the PC key from `ToggleUIKeybind`. See [windows](/rayfield/windows#create-a-window).
+
+```luau
+local Window = Rayfield:CreateWindow({
+   Name = "My Script",
+   ShowText = "My Script", -- the button reads "Show My Script"
+   ToggleUIKeybind = "K",
+})
+```
+
+You can also hide and show the window from code with [`Rayfield:SetVisibility`](/rayfield/windows#set-visibility).

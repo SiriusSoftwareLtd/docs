@@ -53,6 +53,7 @@
             "pages": [
               "rayfield/getting-started",
               "rayfield/windows",
+              "rayfield/show-rayfield",
               "rayfield/notifications",
               "rayfield/heartbeat"
             ]

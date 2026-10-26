@@ -1,7 +1,7 @@
 ---
 title: Rayfield UI library for Roblox
 sidebarTitle: Introduction
-description: Rayfield (2022) is a UI library for Roblox — open source, reliable, and built for production.
+description: Rayfield is an open source UI library for Roblox scripts. Get the official loadstring, then build windows, tabs and elements.
 ---
 
 import Gen2Banner from '/snippets/gen2-banner.mdx'
@@ -21,6 +21,18 @@ import SentivelBanner from '/snippets/sentivel-banner.mdx'
   src="/images/rayfield.png"
   alt="Rayfield interface"
 />
+
+## Rayfield loadstring
+
+This is the official loader. It always serves the current release, so the same line keeps working after updates.
+
+```luau
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+```
+
+Only load Rayfield from `sirius.menu`. Copies hosted elsewhere can be out of date or changed. If it stops loading, check [status.sirius.menu](https://status.sirius.menu) or ask on [Discord](https://discord.sirius.menu).
+
+For Rayfield Gen2, see [loading Gen2](/rayfield-gen2/getting-started).
 
 Rayfield gives you a complete set of UI primitives for Roblox scripts. Windows, tabs, elements, notifications, themes — everything you need to ship a polished interface without building it yourself.
 
