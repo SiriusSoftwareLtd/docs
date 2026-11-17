@@ -54,8 +54,7 @@
               "rayfield/getting-started",
               "rayfield/windows",
               "rayfield/show-rayfield",
-              "rayfield/notifications",
-              "rayfield/heartbeat"
+              "rayfield/notifications"
             ]
           },
           {
@@ -91,8 +90,7 @@
               "rayfield-gen2/getting-started",
               "rayfield-gen2/preview",
               "rayfield-gen2/windows",
-              "rayfield-gen2/tabs",
-              "rayfield-gen2/heartbeat"
+              "rayfield-gen2/tabs"
             ]
           },
           {
@@ -225,6 +223,16 @@
     }
   },
   "redirects": [
+    {
+      "source": "/rayfield/heartbeat",
+      "destination": "/rayfield/getting-started",
+      "permanent": true
+    },
+    {
+      "source": "/rayfield-gen2/heartbeat",
+      "destination": "/rayfield-gen2/getting-started",
+      "permanent": true
+    },
     {
       "source": "/rayfield/configuration/booting-library",
       "destination": "/rayfield/getting-started",
