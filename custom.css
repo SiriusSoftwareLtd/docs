@@ -73,9 +73,148 @@ header a[href="https://discord.sirius.menu"]:hover {
   border-color: #34343a !important;
 }
 
-/* ── Sentivel cross-promo banner ─────────────────────────── */
+/* ── Forge card ──────────────────────────────────────────── */
+/* A slim bar above the content on every Rayfield and Gen2 page, for Forge.
+   The Sirius mark sits in a soft white bloom, with a solid white pill for the
+   action. Class names avoid "banner", "ad" and "promo", which ad blockers hide.
+   The RoScripts bar (snippets/roscripts-banner.mdx) shares the shape as sv-banner. */
+a.fg-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  margin: 0 0 1.75rem;
+  padding: 0.8rem 0.85rem 0.8rem 1.15rem;
+  overflow: hidden;
+  background: linear-gradient(100deg, #17171a 0%, #121214 45%, #0f0f11 100%);
+  border: 1px solid transparent;
+  border-radius: 0.85rem;
+  text-decoration: none !important;
+}
+
+/* The bloom. Anchored behind the mark and breathing slowly, so the banner has a
+   light source instead of a flat fill. */
+a.fg-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 15rem;
+  height: 15rem;
+  transform: translate(-40%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.06) 34%,
+    rgba(255, 255, 255, 0) 66%
+  );
+  pointer-events: none;
+  animation: fg-card-bloom 7s ease-in-out infinite;
+}
+
+/* Children are positioned so they paint above the bloom. */
+.fg-card-mark,
+.fg-card-copy,
+.fg-card-cta {
+  position: relative;
+}
+
+.fg-card-mark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+}
+
+.fg-card-mark svg {
+  display: block;
+  width: auto;
+  height: 1.5rem;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.45));
+}
+
+.fg-card-copy {
+  flex: 1 1 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+/* MDX wraps multi-line inline content in an inner `span[data-as="p"]`, so the
+   flex row has to be declared on that wrapper too — otherwise the gap lands on
+   the wrapper and the badge sits on raw whitespace. */
+.fg-card-title,
+.fg-card-title > span:not(.fg-card-badge) {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.fg-card-title {
+  color: #f4f4f5;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.fg-card-badge {
+  color: #a9a9b2;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  padding: 0.1rem 0.42rem;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 0.35rem;
+}
+
+.fg-card-sub {
+  color: #90909a;
+  font-size: 0.79rem;
+  line-height: 1.4;
+}
+
+.fg-card-cta,
+.fg-card-cta > span:not(.fg-card-arrow) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.fg-card-cta {
+  flex: none;
+  padding: 0.42rem 0.8rem;
+  color: #0a0a0a !important;
+  font-size: 0.79rem;
+  font-weight: 500;
+  white-space: nowrap;
+  background: #ffffff;
+  border-radius: 0.55rem;
+}
+
+@keyframes fg-card-bloom {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: translate(-40%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-40%, -50%) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.fg-card::before {
+    animation: none;
+  }
+}
+
+/* ── Shared bar shape (RoScripts bar) ─────────────────────── */
 /* A slim bar pinned above the content on Rayfield and Gen2 pages. The bare
-   Sentivel mark sits in a soft white bloom, with a solid white pill for the
+   mark sits in a soft white bloom, with a solid white pill for the
    action, so it reads as a recommendation rather than an ad unit. No borders —
    a grey stroke fights the glow. No hover animation. */
 a.sv-banner {
@@ -213,10 +352,10 @@ a.sv-banner::before {
 }
 
 /* ── Gen2 upgrade banner ─────────────────────────────────── */
-/* Sits above the Sentivel bar on the Rayfield (2022) pages only, pointing
+/* Sits above the Forge bar on the Rayfield (2022) pages only, pointing
    readers at Gen2. Same slim geometry so the two stack as one block, but it
    carries the Rayfield mark, a blue hairline and bloom, and an outlined
-   action — a signpost, not a second ad unit. Deliberately still: the Sentivel
+   action — a signpost, not a second ad unit. Deliberately still: the Forge
    bloom breathes, so this one holds so they don't compete. */
 a.rg2-banner {
   position: relative;
@@ -224,7 +363,7 @@ a.rg2-banner {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.55rem 1rem;
-  /* Always directly above the Sentivel banner, so keep the pair tight. */
+  /* Always directly above the Forge bar, so keep the pair tight. */
   margin: 0 0 0.6rem;
   padding: 0.8rem 0.85rem 0.8rem 1.15rem;
   overflow: hidden;
@@ -279,7 +418,7 @@ a.rg2-banner::before {
   min-width: 0;
 }
 
-/* Same MDX `span[data-as="p"]` wrapper caveat as the Sentivel banner. */
+/* Same MDX `span[data-as="p"]` wrapper caveat as the Forge bar. */
 .rg2-banner-title,
 .rg2-banner-title > span:not(.rg2-banner-badge) {
   display: inline-flex;
