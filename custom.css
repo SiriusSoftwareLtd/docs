@@ -74,141 +74,177 @@ header a[href="https://discord.sirius.menu"]:hover {
 }
 
 /* ── Forge card ──────────────────────────────────────────── */
-/* A slim bar above the content on every Rayfield and Gen2 page, for Forge.
-   The Sirius mark sits in a soft white bloom, with a solid white pill for the
-   action. Class names avoid "banner", "ad" and "promo", which ad blockers hide.
-   The RoScripts bar (snippets/roscripts-banner.mdx) shares the shape as sv-banner. */
+/* Above the content on every Rayfield and Gen2 page: Forge's own card, as on
+   RoScripts' upload page. Wordmark in Unbounded, the pitch, and a fading
+   column of real Forge rows on the right. Always dark, like Forge. Class
+   names avoid "banner", "ad" and "promo", which ad blockers hide. */
+@font-face {
+  font-family: "Unbounded";
+  src: url("/fonts/unbounded-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
 a.fg-card {
   position: relative;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.55rem 1rem;
+  min-height: 178px;
   margin: 0 0 1.75rem;
-  padding: 0.8rem 0.85rem 0.8rem 1.15rem;
   overflow: hidden;
-  background: linear-gradient(100deg, #17171a 0%, #121214 45%, #0f0f11 100%);
-  border: 1px solid transparent;
-  border-radius: 0.85rem;
+  border-radius: 20px;
+  background: #161616;
+  color: #ededed;
   text-decoration: none !important;
+  border: 0 !important;
+  container-type: inline-size;
 }
 
-/* The bloom. Anchored behind the mark and breathing slowly, so the banner has a
-   light source instead of a flat fill. */
-a.fg-card::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 15rem;
-  height: 15rem;
-  transform: translate(-40%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.16) 0%,
-    rgba(255, 255, 255, 0.06) 34%,
-    rgba(255, 255, 255, 0) 66%
-  );
-  pointer-events: none;
-  animation: fg-card-bloom 7s ease-in-out infinite;
+/* MDX can wrap inline runs in span[data-as="p"]; keep them inline. */
+a.fg-card span[data-as="p"] {
+  display: contents;
 }
 
-/* Children are positioned so they paint above the bloom. */
-.fg-card-mark,
-.fg-card-copy,
-.fg-card-cta {
+.fg-card-l {
   position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 21rem;
+  padding: 24px 28px;
+}
+
+.fg-card-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ededed;
 }
 
 .fg-card-mark {
-  flex: none;
-  display: grid;
-  place-items: center;
-  color: #ffffff;
+  width: 13px;
+  height: 15px;
 }
 
-.fg-card-mark svg {
-  display: block;
-  width: auto;
-  height: 1.5rem;
-  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.45));
-}
-
-.fg-card-copy {
-  flex: 1 1 16rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  min-width: 0;
-}
-
-/* MDX wraps multi-line inline content in an inner `span[data-as="p"]`, so the
-   flex row has to be declared on that wrapper too — otherwise the gap lands on
-   the wrapper and the badge sits on raw whitespace. */
-.fg-card-title,
-.fg-card-title > span:not(.fg-card-badge) {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.85rem;
+.fg-card-word {
+  font-family: "Unbounded", Inter, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -0.01em;
 }
 
 .fg-card-title {
-  color: #f4f4f5;
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-}
-
-.fg-card-badge {
-  color: #a9a9b2;
-  font-size: 0.68rem;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  padding: 0.1rem 0.42rem;
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 0.35rem;
+  margin-top: 12px;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: #ededed;
 }
 
 .fg-card-sub {
-  color: #90909a;
-  font-size: 0.79rem;
-  line-height: 1.4;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #939393;
 }
 
-.fg-card-cta,
-.fg-card-cta > span:not(.fg-card-arrow) {
+.fg-card-go {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-}
-
-.fg-card-cta {
-  flex: none;
-  padding: 0.42rem 0.8rem;
-  color: #0a0a0a !important;
-  font-size: 0.79rem;
-  font-weight: 500;
-  white-space: nowrap;
+  gap: 6px;
+  height: 32px;
+  margin-top: 16px;
+  padding: 0 14px;
+  border-radius: 980px;
   background: #ffffff;
-  border-radius: 0.55rem;
+  color: #0a0a0a;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
-@keyframes fg-card-bloom {
-  0%,
-  100% {
-    opacity: 0.75;
-    transform: translate(-40%, -50%) scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-40%, -50%) scale(1.08);
-  }
+.fg-card-art {
+  position: absolute;
+  top: 22px;
+  right: -40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 360px;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 35%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 35%);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  a.fg-card::before {
-    animation: none;
+.fg-card-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 12px;
+  background: #1e1e1e;
+  font-size: 13px;
+  color: #c6c6c6;
+  white-space: nowrap;
+}
+
+.fg-card-r2 {
+  margin-left: 36px;
+}
+
+.fg-card-r3 {
+  margin-left: 12px;
+}
+
+.fg-card-r3 img {
+  width: 26px;
+  height: 26px;
+  margin: 0 !important;
+  border-radius: 7px;
+}
+
+.fg-card-ic {
+  display: grid;
+  color: #939393;
+}
+
+.fg-card-ic svg {
+  width: 16px;
+  height: 16px;
+}
+
+.fg-card-mono {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: #ededed;
+}
+
+.fg-card-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 980px;
+  background: #282828;
+  color: #ededed;
+  font-size: 12px;
+}
+
+.fg-card-q {
+  margin-left: auto;
+  color: #7e7e7e;
+}
+
+.fg-card-amt {
+  margin-left: auto;
+  color: #ededed;
+}
+
+/* The rows need the card's width, not the window's: the docs column is narrow. */
+@container (max-width: 640px) {
+  .fg-card-art {
+    display: none;
   }
 }
 
