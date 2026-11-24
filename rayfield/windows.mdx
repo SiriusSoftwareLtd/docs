@@ -144,6 +144,10 @@ local Window = Rayfield:CreateWindow({
   Enables the key system. Configure it with `KeySettings`.
 </ResponseField>
 
+<Note>
+  Rayfield's key system checks the key inside your script, against the keys in `Key` or the file it links to. [Forge](https://forge.sirius.menu/roblox-key-system?utm_source=rayfield-docs&utm_medium=referral&utm_campaign=key_system) checks keys on its servers, and players get them from your ad links or your store.
+</Note>
+
 <ResponseField name="KeySettings" type="object">
   Settings for the key system. Only used when `KeySystem` is `true`.
 
